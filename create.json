@@ -1,0 +1,26 @@
+{
+         "Memory": "256M",
+         "MemorySwap": -1,
+         "CpuShares": 512,
+         "AttachStdin": false,
+         "AttachStdout": false,
+         "AttachStderr": false,
+         "Tty": false,
+         "OpenStdin": false,
+         "StdinOnce": false,
+         "Image": "local/ffviewer:0.5",
+         "NetworkDisabled": false,
+         "ExposedPorts": {
+                 "5900/tcp": {}
+         },
+         "HostConfig": {
+           "LxcConf": {"lxc.utsname":"docker"},
+           "PortBindings": { "5900/tcp": [{ "HostPort": "5900" }] },
+           "PublishAllPorts": false,
+           "Privileged": false,
+           "ExtraHosts": null,
+           "CapAdd": ["NET_ADMIN"],
+           "CapDrop": ["MKNOD"],
+           "NetworkMode": "bridge"
+        }
+    }
