@@ -1,20 +1,63 @@
-<?php 
+<?php
 require '../vendor/autoload.php';
-use GuzzleHttp\Client;
 
-$url = 'http://localhost:2375';
-$client = new GuzzleHttp\Client(['base_uri' => $url]);
+use Docker\Docker;
+use Docker\API\Model\ContainerConfig;
+use Docker\API\Model\HostConfig;
+
+
+//Default value for Firefox URL
 $ffurl="http://www.bncf.firenze.sbn.it/";
 
-//Create a conrainer with firefox and port set
-function create($port, $ffurl="http://www.bncf.firenze.sbn.it/"){
-	
-	global $client;
-	global $url;	
+//Initializes Docker object and instantiate a container manager
+$docker = new Docker();
+$containerManager = $docker->getContainerManager();
 
-	//Import and decode the base json
-	$json_file = file_get_contents("create.json");
-	$json_decoded = json_decode($json_file, $assoc = true);
+//Generate a container configuration with a base set of properties
+function genContainerConfig ($ffurl="http://www.bncf.firenze.sbn.it/",
+			     $port="5900") {
+
+	//Define manager and components to set properties
+	$containerConfig = new ContainerConfig();
+	$containerHostConfig = new HostConfig();
+
+	//Defines host settings
+	$containerHostConfig->setMemory(268435456);
+	$containerHostConfig->setMemorySwap(-1);
+	$containerHostConfig->setCpuShares(512);
+	$containerHostConfig->setPortBindings(["5900/tcp" => [["HostPort" => $port]]]);
+	$containerHostConfig->setPublishAllPorts(False);
+	$containerHostConfig->setPrivileged(False);
+	$containerHostConfig->setExtraHosts([""]);
+	$containerHostConfig->setCapAdd(["NET_ADMIN"]);
+	$containerHostConfig->setCapDrop(["MKNOD"]);
+	$containerHostConfig->setNetworkMode("bridge");
+
+	//Defines general container settings
+	$containerConfig->setAttachStdin(False);
+	$containerConfig->setAttachStdout(False);
+	$containerConfig->setAttachStderr(False);
+	$containerConfig->setTty(False);
+	$containerConfig->setOpenStdin(False);
+	$containerConfig->setStdinOnce(False);
+	$containerConfig->setImage('local/ffviewer:latest');
+	$containerConfig->setNetworkDisabled(False);
+	$containerConfig->setExposedPorts(['5900/tcp' => [''=>'']]);
+	$containerConfig->setCmd(
+				["/usr/bin/x11vnc",
+				"-input",
+				"MBK,MBK",
+				"-nopw",
+				"-create",
+				"-gone",
+				"touch /root/left.txt",
+				"-env",
+				"FD_PROG=/usr/bin/viewer.sh $ffurl"]
+				);
+	$containerConfig->setHostConfig($containerHostConfig);
+
+	return $containerConfig;
+}
 
 	//Sets the values
 	$json_decoded['Cmd'][8]="FD_PROG=/usr/bin/viewer.sh $ffurl";
