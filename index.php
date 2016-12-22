@@ -59,27 +59,25 @@ function genContainerConfig ($ffurl="http://www.bncf.firenze.sbn.it/",
 	return $containerConfig;
 }
 
-	//Sets the values
-	$json_decoded['Cmd'][8]="FD_PROG=/usr/bin/viewer.sh $ffurl";
-	$json_decoded['HostConfig']['PortBindings']['5900/tcp'][0]['HostPort']="$port";
+//Create a container with firefox url and port set
+function create($port, $ffurl="http://www.bncf.firenze.sbn.it/"){
 
-	$response = $client->request('POST','/containers/create', [
-		'json' =>  $json_decoded,
-		'timeout' => 5,
-		'handler' => $tapMiddleware($clientHandler)
-	]);
+	//Sets the values for this instance
+	$contConfig = genContainerConfig($ffurl, $port);
+
+	$containerCreateResult = $containerManager->create($contConfig);
 
 	if ($response->getStatusCode() != 201 ) {
 		return "503";
-	} else { 
-		$container = ($response->json()['Id']);	
-		return $container; 
+	} else {
+		$container = ($response->json()['Id']);
+		return $container;
 	}
 };
 
 //Start the container passed as ID
 function start($id){
-	
+
 	global $client;
 	global $url;
 
@@ -89,7 +87,7 @@ function start($id){
 
 //Returns the firs available port starting from 5900
 function port_check(){
-	
+
 	$host = "192.168.7.5";
 	$port = "5900";
 	$max_container = "250";
@@ -126,7 +124,7 @@ else {
 	if (! isset($_POST['url'])){
 	$_POST['url']="http://www.bncf.firenze.sbn.it/";
 	}
-	
+
 	$creato = create($port, $_POST['url']);
 	if ( $creato == "503") {
 		echo "<h1>Server error</h1>";
