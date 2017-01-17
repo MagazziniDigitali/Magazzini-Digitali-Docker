@@ -117,17 +117,18 @@ if ( $port == "503" ) {
 	echo "Risorse terminate, riprovare fra qualche minuto";
 }
 else {
+	// Maybe it's redundant, need to decide where to assign a default
 	if (! isset($_POST['url'])){
 	$_POST['url']="http://www.bncf.firenze.sbn.it/";
 	}
-
-	$creato = create($port, $_POST['url']);
-	if ( $creato == "503") {
+	//Some checks on POST url should be done
+	$containerId = create($containerManager, $port, $_POST['url']);
+	if ( $containerId  == "503") {
 		echo "<h1>Server error</h1>";
 		echo "Riprova fra poco o se il problema persiste contatta l'amministratore";
 	} else {
-		$partito = start($creato);
-		if ( $partito != "204" ){
+		$isStarted = start($containerManager, $containerId);
+		if ( $isStarted != "204" ){
 			echo "<h1>Server error</h1>";
 			echo "Riprova fra poco o se il problema persiste contatta l'amministratore";
 		} else {
