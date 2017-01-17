@@ -67,12 +67,12 @@ function create($containerManager, $port, $ffurl="http://www.bncf.firenze.sbn.it
 
 	$containerCreateResult = $containerManager->create($contConfig);
 
-	if ($response->getStatusCode() != 201 ) {
-		return "503";
+	if ( $containerCreateResult->getWarnings() == Null ) {
+		return $containerCreateResult->getId();
 	} else {
-		$container = ($response->json()['Id']);
-		return $container;
+		return $containerCreateResult;
 	}
+
 };
 
 //Start the container passed as ID
