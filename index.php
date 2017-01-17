@@ -132,11 +132,13 @@ else {
 	$containerId = create($containerManager, $port, $_POST['url']);
 	if ( $containerId  == "503") {
 		echo "<h1>Server error</h1>";
+		echo "<h3>Non posso creare il container</h3>";
 		echo "Riprova fra poco o se il problema persiste contatta l'amministratore";
 	} else {
 		$isStarted = start($containerManager, $containerId);
 		if ( $isStarted != "204" ){
 			echo "<h1>Server error</h1>";
+			echo "<h3>Non posso far partire il container</h3>";
 			echo "Riprova fra poco o se il problema persiste contatta l'amministratore";
 		} else {
 			$src_url=$_SERVER["SERVER_NAME"];
