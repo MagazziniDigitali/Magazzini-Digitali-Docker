@@ -28,9 +28,9 @@ function genContainerConfig ($ffurl="http://www.bncf.firenze.sbn.it/",
 	$containerHostConfig->setPortBindings(["5900/tcp" => [["HostPort" => $port]]]);
 	$containerHostConfig->setPublishAllPorts(False);
 	$containerHostConfig->setPrivileged(False);
-	$containerHostConfig->setExtraHosts([""]);
-	$containerHostConfig->setCapAdd(["NET_ADMIN"]);
-	$containerHostConfig->setCapDrop(["MKNOD"]);
+	$containerHostConfig->setExtraHosts([]);
+	$containerHostConfig->setCapAdd("NET_ADMIN");
+	$containerHostConfig->setCapDrop("MKNOD");
 	$containerHostConfig->setNetworkMode("bridge");
 
 	//Defines general container settings
