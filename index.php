@@ -2,6 +2,7 @@
 require '../vendor/autoload.php';
 
 use Docker\Docker;
+use Docker\DockerClient;
 use Docker\API\Model\ContainerConfig;
 use Docker\API\Model\HostConfig;
 
@@ -10,7 +11,12 @@ use Docker\API\Model\HostConfig;
 $ffurl="http://www.bncf.firenze.sbn.it/";
 
 //Initializes Docker object and instantiate a container manager
-$docker = new Docker();
+$client = new DockerClient([
+    'remote_socket' => 'tcp://127.0.0.1:2375',
+    'ssl' => false,
+]);
+$docker = new Docker($client);
+
 $containerManager = $docker->getContainerManager();
 
 //Generate a container configuration with a base set of properties
