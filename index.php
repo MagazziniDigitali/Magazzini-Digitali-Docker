@@ -60,7 +60,7 @@ function genContainerConfig ($ffurl="http://www.bncf.firenze.sbn.it/",
 }
 
 //Create a container with firefox url and port set
-function create($port, $ffurl="http://www.bncf.firenze.sbn.it/"){
+function create($containerManager, $port, $ffurl="http://www.bncf.firenze.sbn.it/"){
 
 	//Sets the values for this instance
 	$contConfig = genContainerConfig($ffurl, $port);
