@@ -83,7 +83,8 @@ function create($containerManager, $port, $ffurl="http://www.bncf.firenze.sbn.it
 
 //Start the container passed as ID
 function start($containerManager, $id){
-	$isStarted = $containerManager->start($id);
+	$containerStartResult = $containerManager->start($id);
+	$isStarted = $containerStartResult->getStatusCode();
 	return $isStarted;
 }
 
