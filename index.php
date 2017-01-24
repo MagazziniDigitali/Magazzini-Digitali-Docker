@@ -49,6 +49,7 @@ function genContainerConfig ($ffurl="http://www.bncf.firenze.sbn.it/",
 	$containerConfig->setImage('local/ffviewer:latest');
 	$containerConfig->setNetworkDisabled(False);
 	$containerConfig->setExposedPorts(['5900/tcp' => [''=>'']]);
+	$containerConfig->setEnv(["FFURL=$ffurl"]);
 	$containerConfig->setCmd(
 				["/usr/bin/x11vnc",
 				"-input",
@@ -58,7 +59,7 @@ function genContainerConfig ($ffurl="http://www.bncf.firenze.sbn.it/",
 				"-gone",
 				"touch /root/left.txt",
 				"-env",
-				"FD_PROG=/usr/bin/viewer.sh $ffurl"]
+				"FD_PROG=/usr/bin/viewer.sh"]
 				);
 	$containerConfig->setHostConfig($containerHostConfig);
 
