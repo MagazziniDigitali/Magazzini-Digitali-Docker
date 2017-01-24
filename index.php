@@ -10,6 +10,13 @@ use Docker\API\Model\HostConfig;
 //Default value for Firefox URL
 $ffurl="http://www.bncf.firenze.sbn.it/";
 
+//Available formats
+$imagesAvailable=[
+	'standard'	=> "local/ffviewer:standard",
+	'ebook'		=> "local/ffviewer:ebook",
+	'jwm'		=> "local/ffviewer:jwm"
+	];
+
 //Initializes Docker object and instantiate a container manager
 $client = new DockerClient([
     'remote_socket' => 'tcp://127.0.0.1:2375',
@@ -21,7 +28,7 @@ $containerManager = $docker->getContainerManager();
 
 //Generate a container configuration with a base set of properties
 function genContainerConfig ($ffurl="http://www.bncf.firenze.sbn.it/",
-			     $port="5900") {
+			     $port="5900", $image="local/ffviewer:standard") {
 
 	//Define manager and components to set properties
 	$containerConfig = new ContainerConfig();
@@ -46,7 +53,7 @@ function genContainerConfig ($ffurl="http://www.bncf.firenze.sbn.it/",
 	$containerConfig->setTty(False);
 	$containerConfig->setOpenStdin(False);
 	$containerConfig->setStdinOnce(False);
-	$containerConfig->setImage('local/ffviewer:latest');
+	$containerConfig->setImage($image);
 	$containerConfig->setNetworkDisabled(False);
 	$containerConfig->setExposedPorts(['5900/tcp' => [''=>'']]);
 	$containerConfig->setEnv(["FFURL=$ffurl"]);
@@ -67,10 +74,10 @@ function genContainerConfig ($ffurl="http://www.bncf.firenze.sbn.it/",
 }
 
 //Create a container with firefox url and port set
-function create($containerManager, $port, $ffurl="http://www.bncf.firenze.sbn.it/"){
+function create($containerManager, $port, $ffurl="http://www.bncf.firenze.sbn.it/", $image){
 
 	//Sets the values for this instance
-	$contConfig = genContainerConfig($ffurl, $port);
+	$contConfig = genContainerConfig($ffurl, $port, $image);
 
 	$containerCreateResult = $containerManager->create($contConfig);
 
@@ -128,10 +135,20 @@ if ( $port == "503" ) {
 else {
 	// Maybe it's redundant, need to decide where to assign a default
 	if (! isset($_POST['url'])){
-	$_POST['url']="http://www.bncf.firenze.sbn.it/";
+			$url = "http://www.bncf.firenze.sbn.it/";
 	}
+	else {
+		$url = $_POST['url'];
+	}
+	if (! isset($_POST['type'])){
+		$image = $imagesAvailable['standard'];
+	}
+	else {
+		$image = $imagesAvailable[$_POST['type']];
+	}
+
 	//Some checks on POST url should be done
-	$containerId = create($containerManager, $port, $_POST['url']);
+	$containerId = create($containerManager, $port, $url, $image);
 	if ( $containerId  == "503") {
 		echo "<h1>Server error</h1>";
 		echo "<h3>Non posso creare il container</h3>";
