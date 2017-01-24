@@ -118,8 +118,9 @@ function port_check(){
 
 //End of function definition
 
+//Checks for firs available port in range
+$port = (string)port_check();
 
-$port = port_check();
 if ( $port == "503" ) {
 	echo "<h1>Server error</h1>";
 	echo "Risorse terminate, riprovare fra qualche minuto";
