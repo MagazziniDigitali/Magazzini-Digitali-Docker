@@ -145,9 +145,13 @@ else {
 		$image = $imagesAvailable['standard'];
 	}
 	else {
-		$image = $imagesAvailable[$_POST['type']];
+		if ( in_array($_POST['type'], array_keys($imagesAvailable) ) ){
+			$image = $imagesAvailable[$_POST['type']];
+		}
+		else {
+			$image = $imagesAvailable['standard'];
+		}
 	}
-
 	//Some checks on POST url should be done
 	$containerId = create($containerManager, $port, $url, $image);
 	if ( $containerId  == "503") {
