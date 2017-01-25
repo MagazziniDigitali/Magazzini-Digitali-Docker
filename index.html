@@ -5,7 +5,13 @@
 	<body>
 		<form action="index.php" method="POST">
 			Inserisci l'url da aprire:<br>
-			<input type="text" name="url">
+			<input autocomplete="off" autofocus="true" type="text" name="url"><br>
+			<input type="radio" name="type" value="standard">Standard<br>
+			<input type="radio" name="type" value="ebook">ebook<br>
+			<input type="radio" name="type" value="jwm">jwm<br>
+			Scegli un url di test:<br>
+			<input type="radio" name="url" value="http://memoria-depositolegale.bncf.lan/web/20121018070519/http://eprints.luiss.it/1007/">Memoria<br>
+			<input type="radio" name="url" value="http://md-services.test.bncf.lan/MagazziniDigitaliServices/showObject?17dcf496-5d8c-4eee-a7f3-815f82704583">PDF<br>
 			<input type="submit" value="Submit">
 		</form>
 	</body>
