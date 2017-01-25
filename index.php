@@ -41,7 +41,8 @@ function genContainerConfig ($ffurl="http://www.bncf.firenze.sbn.it/",
 	$containerHostConfig->setPortBindings(["5900/tcp" => [["HostPort" => $port]]]);
 	$containerHostConfig->setPublishAllPorts(False);
 	$containerHostConfig->setPrivileged(False);
-	$containerHostConfig->setExtraHosts([]);
+	// Needed as record is not published
+	$containerHostConfig->setExtraHosts(['memoria-depositolegale.bncf.lan:192.168.7.150']);
 	$containerHostConfig->setCapAdd("NET_ADMIN");
 	$containerHostConfig->setCapDrop("MKNOD");
 	$containerHostConfig->setNetworkMode("bridge");
