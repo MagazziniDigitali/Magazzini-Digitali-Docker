@@ -19,7 +19,7 @@ $imagesAvailable=[
 
 //Initializes Docker object and instantiate a container manager
 $client = new DockerClient([
-    'remote_socket' => 'tcp://127.0.0.1:2375',
+    'remote_socket' => 'tcp://127.0.0.1:2375/v1.24',
     'ssl' => false,
 ]);
 $docker = new Docker($client);
