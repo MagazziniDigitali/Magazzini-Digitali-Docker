@@ -41,9 +41,7 @@ function genContainerConfig ($ffurl="http://www.bncf.firenze.sbn.it/",
 	$containerHostConfig = new HostConfig();
 
 	//Defines host settings
-	$containerHostConfig->setMemory(268435456);
-	$containerHostConfig->setMemorySwap(-1);
-	$containerHostConfig->setCpuShares(512);
+	$containerHostConfig->setMemory(360000000);
 	$containerHostConfig->setPortBindings(["5900/tcp" => [["HostPort" => $port]]]);
 	$containerHostConfig->setPublishAllPorts(False);
 	$containerHostConfig->setPrivileged(False);
