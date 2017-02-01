@@ -18,13 +18,19 @@ $imagesAvailable=[
 	];
 
 //Initializes Docker object and instantiate a container manager
+
 $client = new DockerClient([
     'remote_socket' => 'tcp://127.0.0.1:2375/v1.24',
     'ssl' => false,
 ]);
 $docker = new Docker($client);
 
-$containerManager = $docker->getContainerManager();
+//TODO:Check if docker is started
+try {
+	$containerManager = $docker->getContainerManager();
+} catch (\Exception $e) {
+	echo $e->getMessage();
+}
 
 //Generate a container configuration with a base set of properties
 function genContainerConfig ($ffurl="http://www.bncf.firenze.sbn.it/",
@@ -125,6 +131,8 @@ function port_check(){
 }
 
 //End of function definition
+
+
 
 //Checks for firs available port in range
 $port = (string)port_check();
