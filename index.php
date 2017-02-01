@@ -172,7 +172,7 @@ else {
 			echo "Riprova fra poco o se il problema persiste contatta l'amministratore";
 		} else {
 			$src_url=$_SERVER["SERVER_NAME"];
-			$webpage = "http://$src_url/scripts/vnc_auto.html?host=$src_url&port=$port&encrypt=0&true_color=1";
+			$webpage = "http://$src_url/vnc_auto.html?port=$port";
 			echo "<script>window.onLoad = window.open('$webpage', '_self')</script>";
 		}
 	}
