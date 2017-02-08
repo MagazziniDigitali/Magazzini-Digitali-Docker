@@ -1,0 +1,26 @@
+<?php
+
+// This file contains configuration parameters
+// needed to communicate with authentication interface
+// as well as to create docker containers
+
+// Authentication Interface for software
+$CheckTicketUrl = 'url to wsdlinterface';
+// Software Username
+$CheckTicketUsername = 'username';
+//Software Password
+$CheckTicketPassword = 'password';
+
+
+
+//Available formats and relative docker images
+$imagesAvailable=[
+	'standard'	=> "standardImage",
+	'ebook'		=> "ebookImage",
+	];
+
+
+
+
+
+?>

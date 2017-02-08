@@ -1,0 +1,33 @@
+<?php
+	function printError ($err) {
+	$errorCodes=[
+		"1" => "Ticket invalido",
+		"2" => "Errorone interno",
+		"3" => "Probabilmente non dovresti avere questo ticket",
+		"4" => "Il tipo di contenuto richiesto non è visualizzabile",
+		"5" => "Tropp@ utent@ conness@, risorse terminate",
+		"6" => "Non posso creare il container, contatta l'amministratore",
+		"7" => "Non riesco a fare partire il container, contatta \"amministratore"
+	];
+		if ( (! isset($err) ) or (! in_array($err, array_keys($errorCodes) ) ) ) {
+			echo 'Errore indefinito';
+		} else {
+			echo($errorCodes["$err"]);
+		}
+	}
+?>
+<html>
+	<head>
+		<title>VisoreRemoto | Errore</title>
+	</head>
+	<body>
+		<section>
+		<h1>Ooooops!</h1>
+		<p>Ci dispiace ma...</p>
+		<p><?php printError($_GET['err']); ?></p>
+		</section>
+		<section>
+			<div> Torna alla <a href="Bho" title="Ricerca magazzini digitali">ricerca</a></div>
+		</section>
+	</body>
+</html>

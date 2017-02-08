@@ -1,61 +1,107 @@
 <?php
+
 require '../vendor/autoload.php';
+require 'dockerSettings.php';
 require 'dockerUtils.php';
+require 'ticketInterface.php';
 
-//Default value for Firefox URL
-$ffurl="http://www.bncf.firenze.sbn.it/";
-
-//Available formats
-$imagesAvailable=[
-	'standard'	=> "local/ffviewer:standard",
-	'ebook'		=> "local/ffviewer:ebook",
-	'jwm'		=> "local/ffviewer:jwm"
-	];
+define("TICKET_LEN", 36);
 
 
-//Checks for firs available port in range
-$port = (string)port_check();
+class getParameterException extends Exception {
 
-if ( $port == "503" ) {
-	echo "<h1>Server error</h1>";
-	echo "Risorse terminate, riprovare fra qualche minuto";
 }
-else {
-	// Maybe it's redundant, need to decide where to assign a default
-	if (! isset($_POST['url'])){
-			$url = "http://www.bncf.firenze.sbn.it/";
+
+// Returns right container image for required type, exception raised if wrong or unset
+function getRequestedContainerType ($type , $imagesAvailable ) {
+	if ( (! isset( $type )) or (! in_array($type, array_keys($imagesAvailable) ) ) ){
+		throw new getParameterException('Requested content type is unsupported or unset');
 	}
-	else {
-		$url = $_POST['url'];
-	}
-	if (! isset($_POST['type'])){
-		$image = $imagesAvailable['standard'];
-	}
-	else {
-		if ( in_array($_POST['type'], array_keys($imagesAvailable) ) ){
-			$image = $imagesAvailable[$_POST['type']];
-		}
-		else {
-			$image = $imagesAvailable['standard'];
-		}
-	}
-	//Some checks on POST url should be done
-	$containerId = create($containerManager, $port, $url, $image);
-	if ( $containerId  == "503") {
-		echo "<h1>Server error</h1>";
-		echo "<h3>Non posso creare il container</h3>";
-		echo "Riprova fra poco o se il problema persiste contatta l'amministratore";
-	} else {
-		$isStarted = start($containerManager, $containerId);
-		if ( $isStarted != "204" ){
-			echo "<h1>Server error</h1>";
-			echo "<h3>Non posso far partire il container</h3>";
-			echo "Riprova fra poco o se il problema persiste contatta l'amministratore";
+	return $imagesAvailable["$type"];
+}
+// Returns ticket string from client call, exception raised if wrong or unset
+function getRequestedTicket ($ticket) {
+		if (! isset($ticket) ) {
+			throw new getParameterException('No access ticket supplied');
+		} elseif ( TICKET_LEN == mb_strlen($ticket)) {
+			return $ticket;
 		} else {
-			$src_url=$_SERVER["SERVER_NAME"];
-			$webpage = "http://$src_url/vnc_auto.html?port=$port";
-			echo "<script>window.onLoad = window.open('$webpage', '_self')</script>";
+			throw new getParameterException('Supplied ticket is in an unknown format');
 		}
+}
+
+
+///////////////////////////////////////
+//                                   //
+// Checks if user can access content //
+//                                   //
+///////////////////////////////////////
+
+$isUserAuthorized = FALSE;
+try {
+	$ticket = getRequestedTicket ($_GET['ticket']);
+} catch(getParameterException $e) {
+	//print ( $e->getMessage() );
+	header('Location: /error.php?err=1');
+	exit();
+}
+
+try {
+	$authenticationUserOutput = checkWsdlTicket($CheckTicketUrl, $CheckTicketUsername, $CheckTicketPassword, $ticket );
+} catch(WsdlException $e) {
+	//print ( $e->getMessage() );
+	header('Location: /error.php?err=2');
+	exit();
+}
+
+if (!empty($authenticationUserOutput->errorMsg)){
+	print ("Error Msg: ".$authenticationUserOutput->errorMsg->errorType." - ".$authenticationUserOutput->errorMsg->msgError."\n");
+	header('Location: /error.php?err=3');
+ 	exit();
+} else {
+	$isUserAuthorized = TRUE;
+	$url = $authenticationUserOutput->url;
+	try {
+	$image = getRequestedContainerType($authenticationUserOutput->tipo, $imagesAvailable );
+	} catch(getParameterException $e) {
+		//print ( $e->getMessage() );
+		header('Location: /error.php?err=4');
+		exit();
 	}
+}
+
+///////////////////////////////////
+//                               //
+//	Actually creating containers //
+//                               //
+///////////////////////////////////
+if ( $isUserAuthorized ) {
+	//Checks for firs available port in range
+	try {
+		$port = (string)port_check();
+	} catch(dockerUtilsException $e) {
+		//print ( 'Risorse terminate, riprova più tardi' );
+		header('Location: /error.php?err=5');
+		exit();
+	}
+	try {
+		$containerId = createContainer($containerManager, $port, $url, $image);
+	} catch(dockerUtilsException $e) {
+		//print ( 'Il documento richiesto non può essere visualizzato,sigh'."\n".'Err: '.$e->getMessage() );
+		header('Location: /error.php?err=6');
+		exit();
+	}
+	try {
+		$isStarted = startContainer($containerManager, $containerId);
+	} catch(dockerUtilsException $e) {
+		//print ('Il documento richiesto non può essere visualizzato, sigh'."\n".'Err: '.$e->getMessage());
+		header('Location: /error.php?err=7');
+		exit();
+	}
+	if ( $isStarted ){
+		$src_url=$_SERVER["SERVER_NAME"];
+		$webpage = "http://$src_url/vnc_auto.html?port=$port";
+		header( 'Location: '.$webpage);
+		}
 }
 ?>

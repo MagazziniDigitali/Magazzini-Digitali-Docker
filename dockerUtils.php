@@ -7,6 +7,14 @@ use Docker\DockerClient;
 use Docker\API\Model\ContainerConfig;
 use Docker\API\Model\HostConfig;
 
+define( "DOCKER_HOST",  "192.168.7.5");
+define( "MAX_CONTAINER","250");
+define( "FIRS_PORT",	"5900");
+
+class dockerUtilsException extends Exception {
+
+}
+
 //Initializes Docker object and instantiate a container manager
 
 $client = new DockerClient([
@@ -19,7 +27,7 @@ $docker = new Docker($client);
 try {
 	$containerManager = $docker->getContainerManager();
 } catch (\Exception $e) {
-	echo $e->getMessage();
+	print ( $e->getMessage() );
 }
 //Generate a container configuration with a base set of properties
 function genContainerConfig ($ffurl="http://www.bncf.firenze.sbn.it/",
@@ -68,9 +76,10 @@ function genContainerConfig ($ffurl="http://www.bncf.firenze.sbn.it/",
 }
 
 //Create a container with firefox url and port set
-function create($containerManager, $port, $ffurl="http://www.bncf.firenze.sbn.it/", $image){
+function createContainer($containerManager, $port, $ffurl="http://www.bncf.firenze.sbn.it/", $image){
 
 	//Sets the values for this instance
+	//TODO: cath errors
 	$contConfig = genContainerConfig($ffurl, $port, $image);
 
 	$containerCreateResult = $containerManager->create($contConfig);
@@ -78,24 +87,33 @@ function create($containerManager, $port, $ffurl="http://www.bncf.firenze.sbn.it
 	if ( $containerCreateResult->getWarnings() == Null ) {
 		return $containerCreateResult->getId();
 	} else {
-		return $containerCreateResult;
+		throw new dockerUtilsException( 'Failed to create container: '.$containerCreateResult);
 	}
 
 };
 
 //Start the container passed as ID
-function start($containerManager, $id){
+function startContainer($containerManager, $id){
 	$containerStartResult = $containerManager->start($id);
 	$isStarted = $containerStartResult->getStatusCode();
-	return $isStarted;
+	switch ($isStarted) {
+		case 204:
+			return TRUE;
+		case 304:
+			throw new dockerUtilsException ('Container already started');
+		case 404:
+			throw new dockerUtilsException ('Container does not exist');
+		case 500:
+			throw new dockerUtilsException ('Generic server error');
+	}
 }
 
 //Returns the firs available port starting from 5900
 function port_check(){
 
-	$host = "192.168.7.5";
-	$port = "5900";
-	$max_container = "250";
+	$host = DOCKER_HOST;
+	$port = FIRS_PORT;
+	$max_container = MAX_CONTAINER;
 	$open = true;
 	$max_port = $port+$max_container;
 	while ( ($port < $max_port) && $open ) {
@@ -110,7 +128,7 @@ function port_check(){
 		}
 	}
 	if ( $open ){
-		return "503";
+		throw new dockerUtilsException('No available port left');
 	}
 	else{
 		return $port;
