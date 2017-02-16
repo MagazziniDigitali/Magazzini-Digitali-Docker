@@ -57,8 +57,7 @@ function checkWsdlTicket($url, $login, $password, $ticket){
 		$params = array(
 				'software' => $software,
 				'ticket' => $ticket,
-				'ipClient' => '192.168.7.5'
-				//'ipClient' => getIpClient()
+				'ipClient' => getIpClient()
 				);
 
 		$result = $gsearch->CheckTicketOperation($params);
