@@ -2,7 +2,7 @@
 	function printError ($err) {
 	$errorCodes=[
 		"1" => "Ticket invalido",
-		"2" => "Errorone interno",
+		"2" => "Errore interno",
 		"3" => "Probabilmente non dovresti avere questo ticket",
 		"4" => "Il tipo di contenuto richiesto non è visualizzabile",
 		"5" => "Tropp@ utent@ conness@, risorse terminate",
@@ -19,12 +19,15 @@
 <html>
 	<head>
 		<title>VisoreRemoto | Errore</title>
+    	<link rel="stylesheet" href="error.css">
 	</head>
-	<body>
+	<body class="errorbody">
 		<section>
 		<h1>Ooooops!</h1>
-		<p>Ci dispiace ma...</p>
-		<p><?php printError($_GET['err']); ?></p>
+		<section class="errmsg">
+				<h3>Questo è un errore</h3>
+				<p><?php printError($_GET['err']); ?></p>
+		</section>
 		</section>
 		<section>
 			<div> Torna alla <a href="Bho" title="Ricerca magazzini digitali">ricerca</a></div>
