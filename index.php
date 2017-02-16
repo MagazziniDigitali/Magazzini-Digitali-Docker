@@ -100,7 +100,7 @@ if ( $isUserAuthorized ) {
 	}
 	if ( $isStarted ){
 		$src_url=$_SERVER["SERVER_NAME"];
-		$webpage = "http://$src_url/vnc_auto.html?port=$port";
+		$webpage = "http://$src_url/vnc.html?port=$port";
 		header( 'Location: '.$webpage);
 		}
 }
