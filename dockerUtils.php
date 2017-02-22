@@ -11,6 +11,7 @@ define( "DOCKER_HOST",  "192.168.7.5");
 define( "MAX_CONTAINER","250");
 define( "FIRS_PORT",	"5900");
 define( "FIREFOXURL", "http://md-www.test.bncf.lan/index.php/opac/");
+define( "REMOTE_SOCKET", "tcp://127.0.0.1:2375/v1.24");
 
 class dockerUtilsException extends Exception {
 
@@ -19,7 +20,7 @@ class dockerUtilsException extends Exception {
 //Initializes Docker object and instantiate a container manager
 
 $client = new DockerClient([
-    'remote_socket' => 'tcp://127.0.0.1:2375/v1.24',
+    'remote_socket' => REMOTE_SOCKET,
     'ssl' => false,
 ]);
 $docker = new Docker($client);
