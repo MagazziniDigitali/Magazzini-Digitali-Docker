@@ -139,7 +139,6 @@ var UI;
             UI.addExtraKeysHandlers();
             UI.addXvpHandlers();
             UI.addConnectionControlHandlers();
-            UI.addClipboardHandlers();
             UI.addSettingsHandlers();
 
             // Show the connect panel on first load unless autoconnecting
@@ -354,19 +353,6 @@ var UI;
                 .addEventListener('click', UI.setPassword);
         },
 
-        addClipboardHandlers: function() {
-            document.getElementById("noVNC_clipboard_button")
-                .addEventListener('click', UI.toggleClipboardPanel);
-            document.getElementById("noVNC_clipboard_text")
-                .addEventListener('focus', UI.displayBlur);
-            document.getElementById("noVNC_clipboard_text")
-                .addEventListener('blur', UI.displayFocus);
-            document.getElementById("noVNC_clipboard_text")
-                .addEventListener('change', UI.clipboardSend);
-            document.getElementById("noVNC_clipboard_clear_button")
-                .addEventListener('click', UI.clipboardClear);
-        },
-
         addSettingsHandlers: function() {
             document.getElementById("noVNC_settings_button")
                 .addEventListener('click', UI.toggleSettingsPanel);
@@ -395,7 +381,6 @@ var UI;
                                   'onDisconnected': UI.disconnectFinished,
                                   'onPasswordRequired': UI.passwordRequired,
                                   'onXvpInit': UI.updateXvpButton,
-                                  'onClipboard': UI.clipboardReceive,
                                   'onBell': UI.bell,
                                   'onFBUComplete': UI.initialResize,
                                   'onFBResize': UI.updateSessionSize,
@@ -859,7 +844,6 @@ var UI;
         closeAllPanels: function() {
             UI.closeSettingsPanel();
             UI.closeXvpPanel();
-            UI.closeClipboardPanel();
             UI.closeConnectPanel();
             UI.closeExtraKeys();
         },
@@ -964,56 +948,6 @@ var UI;
 
 /* ------^-------
  *     /XVP
- * ==============
- *   CLIPBOARD
- * ------v------*/
-
-        openClipboardPanel: function() {
-            UI.closeAllPanels();
-            UI.openControlbar();
-
-            document.getElementById('noVNC_clipboard')
-                .classList.add("noVNC_open");
-            document.getElementById('noVNC_clipboard_button')
-                .classList.add("noVNC_selected");
-        },
-
-        closeClipboardPanel: function() {
-            document.getElementById('noVNC_clipboard')
-                .classList.remove("noVNC_open");
-            document.getElementById('noVNC_clipboard_button')
-                .classList.remove("noVNC_selected");
-        },
-
-        toggleClipboardPanel: function() {
-            if (document.getElementById('noVNC_clipboard')
-                .classList.contains("noVNC_open")) {
-                UI.closeClipboardPanel();
-            } else {
-                UI.openClipboardPanel();
-            }
-        },
-
-        clipboardReceive: function(rfb, text) {
-            Util.Debug(">> UI.clipboardReceive: " + text.substr(0,40) + "...");
-            document.getElementById('noVNC_clipboard_text').value = text;
-            Util.Debug("<< UI.clipboardReceive");
-        },
-
-        clipboardClear: function() {
-            document.getElementById('noVNC_clipboard_text').value = "";
-            UI.rfb.clipboardPasteFrom("");
-        },
-
-        clipboardSend: function() {
-            var text = document.getElementById('noVNC_clipboard_text').value;
-            Util.Debug(">> UI.clipboardSend: " + text.substr(0,40) + "...");
-            UI.rfb.clipboardPasteFrom(text);
-            Util.Debug("<< UI.clipboardSend");
-        },
-
-/* ------^-------
- *  /CLIPBOARD
  * ==============
  *  CONNECTION
  * ------v------*/
