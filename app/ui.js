@@ -136,7 +136,6 @@ var UI;
             UI.setupFullscreen();
             UI.addControlbarHandlers();
             UI.addTouchSpecificHandlers();
-            UI.addExtraKeysHandlers();
             UI.addConnectionControlHandlers();
             UI.addSettingsHandlers();
 
@@ -310,21 +309,6 @@ var UI;
             window.addEventListener('load', UI.keyboardinputReset);
         },
 
-        addExtraKeysHandlers: function() {
-            document.getElementById("noVNC_toggle_extra_keys_button")
-                .addEventListener('click', UI.toggleExtraKeys);
-            document.getElementById("noVNC_toggle_ctrl_button")
-                .addEventListener('click', UI.toggleCtrl);
-            document.getElementById("noVNC_toggle_alt_button")
-                .addEventListener('click', UI.toggleAlt);
-            document.getElementById("noVNC_send_tab_button")
-                .addEventListener('click', UI.sendTab);
-            document.getElementById("noVNC_send_esc_button")
-                .addEventListener('click', UI.sendEsc);
-            document.getElementById("noVNC_send_ctrl_alt_del_button")
-                .addEventListener('click', UI.sendCtrlAltDel);
-        },
-
         addConnectionControlHandlers: function() {
             document.getElementById("noVNC_connect_controls_button")
                 .addEventListener('click', UI.toggleConnectPanel);
@@ -456,12 +440,8 @@ var UI;
             if (UI.rfb && UI.rfb.get_view_only()) {
                 document.getElementById('noVNC_keyboard_button')
                     .classList.add('noVNC_hidden');
-                document.getElementById('noVNC_toggle_extra_keys_button')
-                    .classList.add('noVNC_hidden');
             } else {
                 document.getElementById('noVNC_keyboard_button')
-                    .classList.remove('noVNC_hidden');
-                document.getElementById('noVNC_toggle_extra_keys_button')
                     .classList.remove('noVNC_hidden');
             }
 
@@ -826,7 +806,6 @@ var UI;
         closeAllPanels: function() {
             UI.closeSettingsPanel();
             UI.closeConnectPanel();
-            UI.closeExtraKeys();
         },
 
 /* ------^-------
@@ -1421,72 +1400,6 @@ var UI;
 
 /* ------^-------
  *   /KEYBOARD
- * ==============
- *   EXTRA KEYS
- * ------v------*/
-
-        openExtraKeys: function() {
-            UI.closeAllPanels();
-            UI.openControlbar();
-
-            document.getElementById('noVNC_modifiers')
-                .classList.add("noVNC_open");
-            document.getElementById('noVNC_toggle_extra_keys_button')
-                .classList.add("noVNC_selected");
-        },
-
-        closeExtraKeys: function() {
-            document.getElementById('noVNC_modifiers')
-                .classList.remove("noVNC_open");
-            document.getElementById('noVNC_toggle_extra_keys_button')
-                .classList.remove("noVNC_selected");
-        },
-
-        toggleExtraKeys: function() {
-            if(document.getElementById('noVNC_modifiers')
-                .classList.contains("noVNC_open")) {
-                UI.closeExtraKeys();
-            } else  {
-                UI.openExtraKeys();
-            }
-        },
-
-        sendEsc: function() {
-            UI.rfb.sendKey(KeyTable.XK_Escape);
-        },
-
-        sendTab: function() {
-            UI.rfb.sendKey(KeyTable.XK_Tab);
-        },
-
-        toggleCtrl: function() {
-            var btn = document.getElementById('noVNC_toggle_ctrl_button');
-            if (btn.classList.contains("noVNC_selected")) {
-                UI.rfb.sendKey(KeyTable.XK_Control_L, false);
-                btn.classList.remove("noVNC_selected");
-            } else {
-                UI.rfb.sendKey(KeyTable.XK_Control_L, true);
-                btn.classList.add("noVNC_selected");
-            }
-        },
-
-        toggleAlt: function() {
-            var btn = document.getElementById('noVNC_toggle_alt_button');
-            if (btn.classList.contains("noVNC_selected")) {
-                UI.rfb.sendKey(KeyTable.XK_Alt_L, false);
-                btn.classList.remove("noVNC_selected");
-            } else {
-                UI.rfb.sendKey(KeyTable.XK_Alt_L, true);
-                btn.classList.add("noVNC_selected");
-            }
-        },
-
-        sendCtrlAltDel: function() {
-            UI.rfb.sendCtrlAltDel();
-        },
-
-/* ------^-------
- *   /EXTRA KEYS
  * ==============
  *     MISC
  * ------v------*/
