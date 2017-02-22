@@ -141,10 +141,6 @@ var UI;
             UI.addConnectionControlHandlers();
             UI.addSettingsHandlers();
 
-            // Show the connect panel on first load unless autoconnecting
-            if (!autoconnect) {
-                UI.openConnectPanel();
-            }
 
             UI.updateViewClip();
 
@@ -152,7 +148,7 @@ var UI;
 
             document.getElementById('noVNC_setting_host').focus();
 
-            var autoconnect = WebUtil.getConfigVar('autoconnect', false);
+            var autoconnect = true;
             if (autoconnect === 'true' || autoconnect == '1') {
                 autoconnect = true;
                 UI.connect();
