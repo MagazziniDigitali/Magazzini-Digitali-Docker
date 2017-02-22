@@ -137,7 +137,6 @@ var UI;
             UI.addControlbarHandlers();
             UI.addTouchSpecificHandlers();
             UI.addExtraKeysHandlers();
-            UI.addXvpHandlers();
             UI.addConnectionControlHandlers();
             UI.addSettingsHandlers();
 
@@ -326,17 +325,6 @@ var UI;
                 .addEventListener('click', UI.sendCtrlAltDel);
         },
 
-        addXvpHandlers: function() {
-            document.getElementById("noVNC_xvp_shutdown_button")
-                .addEventListener('click', function() { UI.rfb.xvpShutdown(); });
-            document.getElementById("noVNC_xvp_reboot_button")
-                .addEventListener('click', function() { UI.rfb.xvpReboot(); });
-            document.getElementById("noVNC_xvp_reset_button")
-                .addEventListener('click', function() { UI.rfb.xvpReset(); });
-            document.getElementById("noVNC_xvp_button")
-                .addEventListener('click', UI.toggleXvpPanel);
-        },
-
         addConnectionControlHandlers: function() {
             document.getElementById("noVNC_connect_controls_button")
                 .addEventListener('click', UI.toggleConnectPanel);
@@ -376,7 +364,6 @@ var UI;
                                   'onUpdateState': UI.updateState,
                                   'onDisconnected': UI.disconnectFinished,
                                   'onPasswordRequired': UI.passwordRequired,
-                                  'onXvpInit': UI.updateXvpButton,
                                   'onBell': UI.bell,
                                   'onFBUComplete': UI.initialResize,
                                   'onFBResize': UI.updateSessionSize,
@@ -462,7 +449,6 @@ var UI;
                 // Hide the controlbar after 2 seconds
                 UI.closeControlbarTimeout = setTimeout(UI.closeControlbar, 2000);
             } else {
-                UI.updateXvpButton(0);
                 UI.keepControlbar();
             }
 
@@ -839,7 +825,6 @@ var UI;
 
         closeAllPanels: function() {
             UI.closeSettingsPanel();
-            UI.closeXvpPanel();
             UI.closeConnectPanel();
             UI.closeExtraKeys();
         },
@@ -899,51 +884,6 @@ var UI;
 
 /* ------^-------
  *   /SETTINGS
- * ==============
- *      XVP
- * ------v------*/
-
-        openXvpPanel: function() {
-            UI.closeAllPanels();
-            UI.openControlbar();
-
-            document.getElementById('noVNC_xvp')
-                .classList.add("noVNC_open");
-            document.getElementById('noVNC_xvp_button')
-                .classList.add("noVNC_selected");
-        },
-
-        closeXvpPanel: function() {
-            document.getElementById('noVNC_xvp')
-                .classList.remove("noVNC_open");
-            document.getElementById('noVNC_xvp_button')
-                .classList.remove("noVNC_selected");
-        },
-
-        toggleXvpPanel: function() {
-            if (document.getElementById('noVNC_xvp')
-                .classList.contains("noVNC_open")) {
-                UI.closeXvpPanel();
-            } else {
-                UI.openXvpPanel();
-            }
-        },
-
-        // Disable/enable XVP button
-        updateXvpButton: function(ver) {
-            if (ver >= 1 && !UI.rfb.get_view_only()) {
-                document.getElementById('noVNC_xvp_button')
-                    .classList.remove("noVNC_hidden");
-            } else {
-                document.getElementById('noVNC_xvp_button')
-                    .classList.add("noVNC_hidden");
-                // Close XVP panel if open
-                UI.closeXvpPanel();
-            }
-        },
-
-/* ------^-------
- *     /XVP
  * ==============
  *  CONNECTION
  * ------v------*/
