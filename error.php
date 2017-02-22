@@ -30,7 +30,7 @@
 		</section>
 		</section>
 		<section>
-			<div> Torna alla <a href="Bho" title="Ricerca magazzini digitali">ricerca</a></div>
+			<div> Torna alla <a href="http://md-www.test.bncf.lan/index.php/opac/" title="Ricerca">ricerca</a></div>
 		</section>
 	</body>
 </html>

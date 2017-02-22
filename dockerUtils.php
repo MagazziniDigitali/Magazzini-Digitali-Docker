@@ -10,6 +10,7 @@ use Docker\API\Model\HostConfig;
 define( "DOCKER_HOST",  "192.168.7.5");
 define( "MAX_CONTAINER","250");
 define( "FIRS_PORT",	"5900");
+define( "FIREFOXURL", "http://md-www.test.bncf.lan/index.php/opac/");
 
 class dockerUtilsException extends Exception {
 
@@ -30,7 +31,7 @@ try {
 	print ( $e->getMessage() );
 }
 //Generate a container configuration with a base set of properties
-function genContainerConfig ($ffurl="http://www.bncf.firenze.sbn.it/",
+function genContainerConfig ($ffurl=FIREFOXURL,
 			     $port="5900", $image="local/ffviewer:standard") {
 
 	//Define manager and components to set properties
@@ -76,7 +77,7 @@ function genContainerConfig ($ffurl="http://www.bncf.firenze.sbn.it/",
 }
 
 //Create a container with firefox url and port set
-function createContainer($containerManager, $port, $ffurl="http://www.bncf.firenze.sbn.it/", $image){
+function createContainer($containerManager, $port, $ffurl=FIREFOXURL, $image){
 
 	//Sets the values for this instance
 	//TODO: cath errors
