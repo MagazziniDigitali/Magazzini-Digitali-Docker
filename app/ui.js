@@ -147,55 +147,6 @@ var UI;
                 .addEventListener('click', UI.hideStatus);
         },
 
-
-        addTouchSpecificHandlers: function() {
-            document.getElementById("noVNC_mouse_button0")
-                .addEventListener('click', function () { UI.setMouseButton(1); });
-            document.getElementById("noVNC_mouse_button1")
-                .addEventListener('click', function () { UI.setMouseButton(2); });
-            document.getElementById("noVNC_mouse_button2")
-                .addEventListener('click', function () { UI.setMouseButton(4); });
-            document.getElementById("noVNC_mouse_button4")
-                .addEventListener('click', function () { UI.setMouseButton(0); });
-            document.getElementById("noVNC_keyboard_button")
-                .addEventListener('click', UI.toggleVirtualKeyboard);
-
-            document.getElementById("noVNC_keyboardinput")
-                .addEventListener('input', UI.keyInput);
-            document.getElementById("noVNC_keyboardinput")
-                .addEventListener('focus', UI.onfocusVirtualKeyboard);
-            document.getElementById("noVNC_keyboardinput")
-                .addEventListener('blur', UI.onblurVirtualKeyboard);
-            document.getElementById("noVNC_keyboardinput")
-                .addEventListener('submit', function () { return false; });
-
-            document.documentElement
-                .addEventListener('mousedown', UI.keepVirtualKeyboard, true);
-
-            document.getElementById("noVNC_control_bar")
-                .addEventListener('touchstart', UI.activateControlbar);
-            document.getElementById("noVNC_control_bar")
-                .addEventListener('touchmove', UI.activateControlbar);
-            document.getElementById("noVNC_control_bar")
-                .addEventListener('touchend', UI.activateControlbar);
-            document.getElementById("noVNC_control_bar")
-                .addEventListener('input', UI.activateControlbar);
-
-            document.getElementById("noVNC_control_bar")
-                .addEventListener('touchstart', UI.keepControlbar);
-            document.getElementById("noVNC_control_bar")
-                .addEventListener('input', UI.keepControlbar);
-
-            document.getElementById("noVNC_control_bar_handle")
-                .addEventListener('touchstart', UI.controlbarHandleMouseDown);
-            document.getElementById("noVNC_control_bar_handle")
-                .addEventListener('touchend', UI.controlbarHandleMouseUp);
-            document.getElementById("noVNC_control_bar_handle")
-                .addEventListener('touchmove', UI.dragControlbarHandle);
-
-            window.addEventListener('load', UI.keyboardinputReset);
-        },
-
         initRFB: function() {
             try {
                 UI.rfb = new RFB({'target': document.getElementById('noVNC_canvas'),
@@ -258,8 +209,6 @@ var UI;
                     UI.showStatus(msg, 'error');
                     break;
             }
-
-//            UI.updateVisualState();
         },
 
         showStatus: function(text, status_type, time) {
@@ -319,15 +268,10 @@ var UI;
  *  CONNECTION
  * ------v------*/
         connect: function() {
-//            var host = document.getElementById('noVNC_setting_host').value;
             var host = window.location.host; 
-//            var port = document.getElementById('noVNC_setting_port').value;
             var port = WebUtil.getConfigVar('port');
-//           var password = document.getElementById('noVNC_setting_password').value;
             var password = '';
-//            var token = document.getElementById('noVNC_setting_token').value;
             var token = '';
-//            var path = document.getElementById('noVNC_setting_path').value;
             var path = 'websockify';
 
             //if token is in path then ignore the new token variable
