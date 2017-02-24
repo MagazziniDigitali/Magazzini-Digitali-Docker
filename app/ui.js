@@ -202,6 +202,20 @@ var UI;
                     break;
                 case 'disconnected':
                     UI.showStatus(_("Disconnected"));
+					var backhomebox = document.createElement( 'h4');
+					backhomebox.className = "errorbody ";
+					backhomebox.className += "vncerrmsg";
+					var backhometext = document.createTextNode ('Torna alla');
+
+					var backhomelink = document.createElement( 'a');
+					backhomelink.setAttribute('href', 'http://md-www.test.bncf.lan/index.php/opac/');
+					var backhomelinktext = document.createTextNode (' ricerca');
+					backhomelink.appendChild(backhomelinktext);
+
+					backhomebox.appendChild(backhometext);
+					backhomebox.appendChild(backhomelink);
+
+					document.getElementById("noVNC_container").appendChild(backhomebox);
                     break;
                 default:
                     msg = "Invalid UI state";

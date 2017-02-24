@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 	function printError ($err) {
 	$errorCodes=[
@@ -19,7 +20,7 @@
 <html>
 	<head>
 		<title>VisoreRemoto | Errore</title>
-    	<link rel="stylesheet" href="error.css">
+    	<link rel="stylesheet" href="app/styles/error.css">
 	</head>
 	<body class="errorbody">
 		<section>
