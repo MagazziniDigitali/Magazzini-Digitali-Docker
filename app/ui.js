@@ -58,7 +58,7 @@ var UI;
     });
 
     // Set up translations
-    var LINGUAS = ["de", "el", "nl", "sv"];
+    var LINGUAS = ["de", "el", "nl", "sv", "it"];
     Util.Localisation.setup(LINGUAS);
     if (Util.Localisation.language !== "en") {
         WebUtil.load_scripts(
