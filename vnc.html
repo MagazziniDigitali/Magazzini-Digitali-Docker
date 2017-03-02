@@ -73,21 +73,6 @@
     <!-- Status Dialog -->
     <div id="noVNC_status"></div>
 
-    <!-- Password Dialog -->
-    <div class="noVNC_center">
-    <div id="noVNC_password_dlg" class="noVNC_panel">
-        <ul>
-            <li>
-                <label>Password:</label>
-                <input id="noVNC_password_input" type="password" />
-            </li>
-            <li>
-                <input id="noVNC_password_button" type="button" value="Send Password" class="noVNC_submit" />
-            </li>
-        </ul>
-    </div>
-    </div>
-
     <!-- Transition Screens -->
     <div id="noVNC_transition">
         <div id="noVNC_transition_text"></div>
@@ -114,6 +99,17 @@
     <script src="core/util.js"></script>
     <script src="app/webutil.js"></script>
     <script src="app/ui.js"></script>
+	<script>
+		window.onbeforeunload = function(e) {
+			match = new RegExp("noVNC_status_normal");
+			classes = document.getElementById('noVNC_status').className;
+			if ( match.test(classes) ) {
+				var dialogText = 'Ricaricando la pagina la sessione verrà terminata\nIl login dovrà essere effettuato nuovamente';
+				e.returnValue = dialogText;
+				return dialogText;
+			}
+		}
+	</script>
     <!-- end scripts -->
 
  </body>
