@@ -39,7 +39,7 @@ function getRequestedTicket ($ticket) {
 
 $isUserAuthorized = FALSE;
 try {
-	$ticket = getRequestedTicket ($_GET['ticket']);
+	$ticket = getRequestedTicket ($_GET['idTicket']);
 } catch(getParameterException $e) {
 	//print ( $e->getMessage() );
 	header('Location: /error.php?err=1');
