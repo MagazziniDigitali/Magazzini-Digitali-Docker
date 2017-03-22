@@ -29,7 +29,7 @@ $docker = new Docker($client);
 try {
 	$containerManager = $docker->getContainerManager();
 } catch (\Exception $e) {
-	print ( $e->getMessage() );
+	error_log( $e->getMessage() );
 }
 //Generate a container configuration with a base set of properties
 function genContainerConfig ($ffurl=FIREFOXURL,

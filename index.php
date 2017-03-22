@@ -41,7 +41,7 @@ $isUserAuthorized = FALSE;
 try {
 	$ticket = getRequestedTicket ($_GET['idTicket']);
 } catch(getParameterException $e) {
-	//print ( $e->getMessage() );
+	error_log( $e->getMessage() );
 	header('Location: /error.php?err=1');
 	exit();
 }
@@ -49,13 +49,13 @@ try {
 try {
 	$authenticationUserOutput = checkWsdlTicket($CheckTicketUrl, $CheckTicketUsername, $CheckTicketPassword, $ticket );
 } catch(WsdlException $e) {
-	//print ( $e->getMessage() );
+	error_log( $e->getMessage() );
 	header('Location: /error.php?err=2');
 	exit();
 }
 
 if (!empty($authenticationUserOutput->errorMsg)){
-	print ("Error Msg: ".$authenticationUserOutput->errorMsg->errorType." - ".$authenticationUserOutput->errorMsg->msgError."\n");
+	error_log("Error Msg: ".$authenticationUserOutput->errorMsg->errorType." - ".$authenticationUserOutput->errorMsg->msgError."\n");
 	header('Location: /error.php?err=3');
  	exit();
 } else {
@@ -64,7 +64,7 @@ if (!empty($authenticationUserOutput->errorMsg)){
 	try {
 	$image = getRequestedContainerType($authenticationUserOutput->tipo, $imagesAvailable );
 	} catch(getParameterException $e) {
-		//print ( $e->getMessage() );
+		error_log( $e->getMessage() );
 		header('Location: /error.php?err=4');
 		exit();
 	}
@@ -80,21 +80,21 @@ if ( $isUserAuthorized ) {
 	try {
 		$port = (string)port_check();
 	} catch(dockerUtilsException $e) {
-		//print ( 'Risorse terminate, riprova più tardi' );
+		error_log( 'Risorse terminate, riprova più tardi' );
 		header('Location: /error.php?err=5');
 		exit();
 	}
 	try {
 		$containerId = createContainer($containerManager, $port, $url, $image);
 	} catch(dockerUtilsException $e) {
-		//print ( 'Il documento richiesto non può essere visualizzato,sigh'."\n".'Err: '.$e->getMessage() );
+		error_log( 'Il documento richiesto non può essere visualizzato,sigh'."\n".'Err: '.$e->getMessage() );
 		header('Location: /error.php?err=6');
 		exit();
 	}
 	try {
 		$isStarted = startContainer($containerManager, $containerId);
 	} catch(dockerUtilsException $e) {
-		//print ('Il documento richiesto non può essere visualizzato, sigh'."\n".'Err: '.$e->getMessage());
+		error_log('Il documento richiesto non può essere visualizzato, sigh'."\n".'Err: '.$e->getMessage());
 		header('Location: /error.php?err=7');
 		exit();
 	}
