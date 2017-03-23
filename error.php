@@ -11,9 +11,9 @@
 		"7" => "Non riesco a fare partire il container, contatta l\' amministratore"
 	];
 		if ( (! isset($err) ) or (! in_array($err, array_keys($errorCodes) ) ) ) {
-			echo 'Errore indefinito';
+			return 'Errore indefinito';
 		} else {
-			echo($errorCodes["$err"]);
+			return $errorCodes["$err"];
 		}
 	}
 ?>
@@ -27,7 +27,7 @@
 		<h1>Ooooops!</h1>
 		<section class="errmsg">
 				<h3>Questo è un errore</h3>
-				<p><?php printError($_GET['err']); ?></p>
+				<p><?php echo printError(urlencode($_GET['err'])); ?></p>
 		</section>
 		</section>
 		<section>
