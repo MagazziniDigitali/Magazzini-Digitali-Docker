@@ -111,7 +111,7 @@ function startContainer($containerManager, $id){
 }
 
 //Returns the firs available port starting from 5900
-function port_check(){
+function portCheck(){
 
 	$host = DOCKER_HOST;
 	$port = FIRS_PORT;

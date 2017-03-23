@@ -78,7 +78,7 @@ if (!empty($authenticationUserOutput->errorMsg)){
 if ( $isUserAuthorized ) {
 	//Checks for firs available port in range
 	try {
-		$port = (string)port_check();
+		$port = (string)portCheck();
 	} catch(dockerUtilsException $e) {
 		//print ( 'Risorse terminate, riprova più tardi' );
 		header('Location: /error.php?err=5');
