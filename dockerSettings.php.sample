@@ -15,9 +15,9 @@ $CheckTicketPassword = 'password';
 
 //Available formats and relative docker images
 $imagesAvailable=[
-	'standard'	=> "standardImage",
-	'ebook'		=> "ebookImage",
-	];
+    'standard'    => "standardImage",
+    'ebook'       => "ebookImage",
+    ];
 
 
 
