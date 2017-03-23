@@ -96,18 +96,9 @@ function createContainer($containerManager, $port, $ffurl=FIREFOXURL, $image){
 
 //Start the container passed as ID
 function startContainer($containerManager, $id){
-	$containerStartResult = $containerManager->start($id);
-	$isStarted = $containerStartResult->getStatusCode();
-	switch ($isStarted) {
-		case 204:
-			return TRUE;
-		case 304:
-			throw new dockerUtilsException ('Container already started');
-		case 404:
-			throw new dockerUtilsException ('Container does not exist');
-		case 500:
-			throw new dockerUtilsException ('Generic server error');
-	}
+        default:
+            throw new dockerUtilsException ('Invalid response from Docker');
+    }
 }
 
 //Returns the firs available port starting from 5900
