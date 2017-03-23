@@ -8,7 +8,7 @@
 		"4" => "Il tipo di contenuto richiesto non è visualizzabile",
 		"5" => "Tropp@ utent@ conness@, risorse terminate",
 		"6" => "Non posso creare il container, contatta l'amministratore",
-		"7" => "Non riesco a fare partire il container, contatta l\' amministratore"
+		"7" => "Non riesco a fare partire il container, contatta l' amministratore"
 	];
 		if ( (! isset($err) ) or (! in_array($err, array_keys($errorCodes) ) ) ) {
 			return 'Errore indefinito';
