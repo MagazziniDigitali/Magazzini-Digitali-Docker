@@ -7,29 +7,6 @@ require 'ticketInterface.php';
 
 define("TICKET_LEN", 36);
 
-class getParameterException extends Exception {
-
-}
-
-// Returns right container image for required type, exception raised if wrong or unset
-function getRequestedContainerType ($type , $imagesAvailable ) {
-    if ( (! isset( $type )) or (! in_array($type, array_keys($imagesAvailable) ) ) ){
-        throw new getParameterException('Requested content type is unsupported or unset');
-    }
-    return $imagesAvailable["$type"];
-}
-// Returns ticket string from client call, exception raised if wrong or unset
-function getRequestedTicket ($ticket) {
-    if (! isset($ticket) ) {
-        throw new getParameterException('No access ticket supplied');
-    } elseif ( TICKET_LEN == mb_strlen($ticket)) {
-        return $ticket;
-    } else {
-        throw new getParameterException('Supplied ticket is in an unknown format');
-    }
-}
-
-
 ///////////////////////////////////////
 //                                   //
 // Checks if user can access content //
