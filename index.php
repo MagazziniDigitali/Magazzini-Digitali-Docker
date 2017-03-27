@@ -1,6 +1,6 @@
 <?php
 
-require '../vendor/autoload.php';
+require 'vendor/autoload.php';
 require 'dockerSettings.php';
 require 'dockerUtils.php';
 require 'ticketInterface.php';
