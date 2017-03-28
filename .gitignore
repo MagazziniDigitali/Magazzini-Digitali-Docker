@@ -1,3 +1,4 @@
 dockerSettings.php
 *.swp
 vendor
+docs/cache
