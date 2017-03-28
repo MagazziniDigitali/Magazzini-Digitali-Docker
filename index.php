@@ -5,7 +5,6 @@ require 'dockerSettings.php';
 require 'dockerUtils.php';
 require 'ticketInterface.php';
 
-define("TICKET_LEN", 36);
 
 ///////////////////////////////////////
 //                                   //
@@ -15,6 +14,9 @@ define("TICKET_LEN", 36);
 
 $isUserAuthorized = FALSE;
 try {
+    if (!isset($_GET['idTicket'])){
+        throw new getParameterException('Token can\'t be empty');
+    }
     $ticket = getRequestedTicket ($_GET['idTicket']);
 } catch(getParameterException $e) {
     //print ( $e->getMessage() );

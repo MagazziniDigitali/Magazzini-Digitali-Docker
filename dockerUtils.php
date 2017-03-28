@@ -12,6 +12,7 @@ define( "MAX_CONTAINER",    "250");
 define( "FIRS_PORT",        "5900");
 define( "FIREFOXURL",       "http://md-www.test.bncf.lan/index.php/opac/");
 define( "REMOTE_SOCKET",    "tcp://127.0.0.1:2375/v1.24");
+define( "TICKET_LEN",       36);
 
 class dockerUtilsException extends Exception {
 
@@ -154,9 +155,7 @@ function getRequestedContainerType ($type , $imagesAvailable ) {
 
 // Returns ticket string from client call, exception raised if wrong or unset
 function getRequestedTicket ($ticket) {
-    if (! isset($ticket) ) {
-        throw new getParameterException('No access ticket supplied');
-    } elseif ( TICKET_LEN == mb_strlen($ticket)) {
+    if ( TICKET_LEN == mb_strlen($ticket)) {
         return $ticket;
     } else {
         throw new getParameterException('Supplied ticket is in an unknown format');
