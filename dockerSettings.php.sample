@@ -1,19 +1,36 @@
 <?php
 
-// This file contains configuration parameters
-// needed to communicate with authentication interface
-// as well as to create docker containers
+/**
+ * This file contains configuration parameters
+ * needed to communicate with authentication interface
+ * as well as to create docker containers
+ */
 
-// Authentication Interface for software
+/**
+ * Authentication Interface for software
+ * @var string Should be the URL to the serverlet providing the authentication interface
+ */
 $CheckTicketUrl = 'url to wsdlinterface';
-// Software Username
+
+/**
+ *  Software username
+ * @var string It should contain the username used to authenticate with the serverlet
+ */
 $CheckTicketUsername = 'username';
-//Software Password
+
+/**
+ *  Software password
+ * @var It should contain the password used to authenticate with the serverlet
+ */
 $CheckTicketPassword = 'password';
 
 
 
-//Available formats and relative docker images
+/**
+ *  Available container base-images
+ * @var The key has to be the same as the one returned from the autentication software 
+ *  while the value reflects the docker images, local or remote, which should be used for the filetype
+ */
 $imagesAvailable=[
     'WARC'    => "local/ffviewer:standard",
     'PDF'     => "local/ffviewer:standard",
