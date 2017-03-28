@@ -7,25 +7,73 @@
     <meta name="author" content=""/>
     <meta name="description" content=""/>
 
-    <link href="css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/prism.css" rel="stylesheet" media="all"/>
-    <link href="css/template.css" rel="stylesheet" media="all"/>
+    <link href="../css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+    <link href="../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/prism.css" rel="stylesheet" media="all"/>
+    <link href="../css/template.css" rel="stylesheet" media="all"/>
     
     <!--[if lt IE 9]>
-    <script src="js/html5.js"></script>
+    <script src="../js/html5.js"></script>
     <![endif]-->
-    <script src="js/jquery-1.11.0.min.js"></script>
-    <script src="js/ui/1.10.4/jquery-ui.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.smooth-scroll.js"></script>
-    <script src="js/prism.min.js"></script>
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/ui/1.10.4/jquery-ui.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.smooth-scroll.js"></script>
+    <script src="../js/prism.min.js"></script>
     <!-- TODO: Add http://jscrollpane.kelvinluck.com/ to style the scrollbars for browsers not using webkit-->
-    
-    <link rel="shortcut icon" href="images/favicon.ico"/>
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png"/>
-    <link rel="apple-touch-icon" sizes="72x72" href="images/apple-touch-icon-72x72.png"/>
-    <link rel="apple-touch-icon" sizes="114x114" href="images/apple-touch-icon-114x114.png"/>
+        <script type="text/javascript">
+        function loadExternalCodeSnippets() {
+            Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
+                var src = pre.getAttribute('data-src');
+                var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
+                var language = 'php';
+
+                var code = document.createElement('code');
+                code.className = 'language-' + language;
+
+                pre.textContent = '';
+
+                code.textContent = 'Loading…';
+
+                pre.appendChild(code);
+
+                var xhr = new XMLHttpRequest();
+
+                xhr.open('GET', src, true);
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+
+                        if (xhr.status < 400 && xhr.responseText) {
+                            code.textContent = xhr.responseText;
+
+                            Prism.highlightElement(code);
+                        }
+                        else if (xhr.status >= 400) {
+                            code.textContent = '✖ Error ' + xhr.status + ' while fetching file: ' + xhr.statusText;
+                        }
+                        else {
+                            code.textContent = '✖ Error: File does not exist or is empty';
+                        }
+                    }
+                };
+
+                xhr.send(null);
+            });
+        }
+
+        $(document).ready(function(){
+            loadExternalCodeSnippets();
+        });
+        $('#source-view').on('shown', function () {
+            loadExternalCodeSnippets();
+        })
+    </script>
+
+    <link rel="shortcut icon" href="../images/favicon.ico"/>
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="../images/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="../images/apple-touch-icon-114x114.png"/>
 </head>
 <body>
 
@@ -35,7 +83,7 @@
             <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                 <i class="icon-ellipsis-vertical"></i>
             </a>
-            <a class="brand" href="index.html">API Documentation</a>
+            <a class="brand" href="../index.html">API Documentation</a>
 
             <div class="nav-collapse">
                 <ul class="nav pull-right">
@@ -45,7 +93,7 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="graphs/class.html">
+                                <a href="../graphs/class.html">
                                     <i class="icon-list-alt"></i>&#160;Class hierarchy diagram
                                 </a>
                             </li>
@@ -57,17 +105,17 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="reports/errors.html">
+                                <a href="../reports/errors.html">
                                                                                                                                                                                                                                                                     <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">0</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="reports/markers.html">
+                                <a href="../reports/markers.html">
                                                                                                                                                                                                                                                                     <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">2</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="reports/deprecated.html">
+                                <a href="../reports/deprecated.html">
                                                                                                             <i class="icon-list-alt"></i>&#160;Deprecated <span class="label label-info pull-right">0</span>
                                 </a>
                             </li>
@@ -88,16 +136,16 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-413047383"></a>
-                                <a href="namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-915166909"></a>
+                                <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-413047383" class="accordion-body collapse in">
+            <div id="namespace-915166909" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
                     <ul>
-                                                                                                    <li class="class"><a href="classes/dockerUtilsException.html">dockerUtilsException</a></li>
-                                                    <li class="class"><a href="classes/getParameterException.html">getParameterException</a></li>
+                                                                                                    <li class="class"><a href="../classes/dockerUtilsException.html">dockerUtilsException</a></li>
+                                                    <li class="class"><a href="../classes/getParameterException.html">getParameterException</a></li>
                                             </ul>
                 </div>
             </div>
@@ -109,23 +157,26 @@
     <section class="row-fluid">
         <div class="span10 offset2">
             <div class="row-fluid">
-                <div class="span8 content namespace">
+                <div class="span8 content file">
                     <nav>
-                                                
-                                            </nav>
-                    <h1><small></small>\</h1>
+                                                                    </nav>
 
-                    
+                    <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
+                    <h1><small></small>dockerUtils.php</h1>
+                    <p><em>dockerUtils file, name is self-explaining.</em></p>
+                    <p>This file contains function and constants needed to interact with Docker daemon
+as well as some utils functions which are needed to manage containers</p>
+
                     
                     
                                         <h2>Classes</h2>
                     <table class="table table-hover">
                                             <tr>
-                            <td><a href="classes/dockerUtilsException.html">dockerUtilsException</a></td>
+                            <td><a href="../classes/dockerUtilsException.html">dockerUtilsException</a></td>
                             <td><em>Exception is thrown if something goes wrong with one of the utils.</em></td>
                         </tr>
                                             <tr>
-                            <td><a href="classes/getParameterException.html">getParameterException</a></td>
+                            <td><a href="../classes/getParameterException.html">getParameterException</a></td>
                             <td><em>Exception is thrown if parameter parsing goes wrong.</em></td>
                         </tr>
                                         </table>
@@ -133,16 +184,44 @@
 
                 <aside class="span4 detailsbar">
                     <dl>
-                        <dt>Namespace hierarchy</dt>
-                        <dd class="hierarchy">
-                                                                                                                                                <div class="namespace-wrapper">\</div>
-                        </dd>
+                                                    <dt>Package</dt>
+                            <dd><div class="namespace-wrapper">\Default</div></dd>
+                        
+                        
                     </dl>
+                    <h2>Tags</h2>
+                    <table class="table table-condensed">
+                                                    <tr>
+                                <th>
+                                    author
+                                </th>
+                                <td>
+                                                                            <p>svalo@libersoft.it</p>
+                                                                    </td>
+                            </tr>
+                                                    <tr>
+                                <th>
+                                    copyright
+                                </th>
+                                <td>
+                                                                            <p>???</p>
+                                                                    </td>
+                            </tr>
+                                                    <tr>
+                                <th>
+                                    license
+                                </th>
+                                <td>
+                                                                            <p>???</p>
+                                                                    </td>
+                            </tr>
+                                            </table>
+
                 </aside>
             </div>
 
                         <div class="row-fluid">
-                <section class="span8 content namespace">
+                <section class="span8 content file">
                     <h2>Constants</h2>
                 </section>
                 <aside class="span4 detailsbar"></aside>
@@ -162,67 +241,7 @@
             <h1><i class="icon-arrow-down"></i></h1>
                         <dl>
                                 <dt>File</dt>
-                <dd><a href=""><div class="path-wrapper"></div></a></dd>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            package
-                        </th>
-                        <td>
-                                                            <p>Default</p>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                        <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="constant_FIREFOXURL" name="constant_FIREFOXURL" class="anchor"></a>
-            <article id="constant_FIREFOXURL" class="constant">
-                <h3 class="">FIREFOXURL</h3>
-                <pre class="signature">FIREFOXURL</pre>
-                <p><em></em></p>
-                
-            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                <dt>File</dt>
-                <dd><a href=""><div class="path-wrapper"></div></a></dd>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            package
-                        </th>
-                        <td>
-                                                            <p>Default</p>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                        <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="constant_FIRS_PORT" name="constant_FIRS_PORT" class="anchor"></a>
-            <article id="constant_FIRS_PORT" class="constant">
-                <h3 class="">FIRS_PORT</h3>
-                <pre class="signature">FIRS_PORT</pre>
-                <p><em></em></p>
-                
-            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                        <dl>
-                                <dt>File</dt>
-                <dd><a href=""><div class="path-wrapper"></div></a></dd>
+                <dd><a href=""><div class="path-wrapper">dockerUtils.php</div></a></dd>
                                                                             </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
@@ -252,7 +271,67 @@
             <h1><i class="icon-arrow-down"></i></h1>
                         <dl>
                                 <dt>File</dt>
-                <dd><a href=""><div class="path-wrapper"></div></a></dd>
+                <dd><a href=""><div class="path-wrapper">dockerUtils.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FIRS_PORT" name="constant_FIRS_PORT" class="anchor"></a>
+            <article id="constant_FIRS_PORT" class="constant">
+                <h3 class="">FIRS_PORT</h3>
+                <pre class="signature">FIRS_PORT</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">dockerUtils.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="constant_FIREFOXURL" name="constant_FIREFOXURL" class="anchor"></a>
+            <article id="constant_FIREFOXURL" class="constant">
+                <h3 class="">FIREFOXURL</h3>
+                <pre class="signature">FIREFOXURL</pre>
+                <p><em></em></p>
+                
+            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                        <dl>
+                                <dt>File</dt>
+                <dd><a href=""><div class="path-wrapper">dockerUtils.php</div></a></dd>
                                                                             </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
@@ -282,7 +361,7 @@
             <h1><i class="icon-arrow-down"></i></h1>
                         <dl>
                                 <dt>File</dt>
-                <dd><a href=""><div class="path-wrapper"></div></a></dd>
+                <dd><a href=""><div class="path-wrapper">dockerUtils.php</div></a></dd>
                                                                             </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
@@ -312,7 +391,7 @@
             <h1><i class="icon-arrow-down"></i></h1>
                         <dl>
                                 <dt>File</dt>
-                <dd><a href=""><div class="path-wrapper"></div></a></dd>
+                <dd><a href=""><div class="path-wrapper">dockerUtils.php</div></a></dd>
                                                                             </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
@@ -330,11 +409,67 @@
 
                             
                         <div class="row-fluid">
-                <section class="span8 content namespace">
+                <section class="span8 content file">
                     <h2>Functions</h2>
                 </section>
                 <aside class="span4 detailsbar"></aside>
             </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_genContainerConfig" name="method_genContainerConfig" class="anchor"></a>
+            <article class="method">
+                <h3 class=" ">genContainerConfig()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">genContainerConfig(string  <span class="argument">$ffurl = FIREFOXURL</span>, string  <span class="argument">$port = &quot;5900&quot;</span>, string  <span class="argument">$image = &quot;local/ffviewer:standard&quot;</span>) : \Docker\API\Model\ContainerConfig</pre>
+                <p><em>Generates a container configuration with a base set of properties.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$ffurl </td>
+                                <td><p>URL to point container's browser to</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$port </td>
+                                <td><p>to be used by NoVnc</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>string</td>
+                                <td>$image </td>
+                                <td><p>image to be used to create container</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    \Docker\API\Model\ContainerConfig
+                                            &mdash; <p>a containerConfig class with paremeters set</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href=""><div class="path-wrapper">dockerUtils.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
 
                                         <div class="row-fluid">
         <div class="span8 content class">
@@ -386,213 +521,7 @@
             <h1><i class="icon-arrow-down"></i></h1>
                                                             <dl>
                                     <dt>File</dt>
-                    <dd><a href=""><div class="path-wrapper"></div></a></dd>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            package
-                        </th>
-                        <td>
-                                                                                            <p>Default</p>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                        <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_genContainerConfig" name="method_genContainerConfig" class="anchor"></a>
-            <article class="method">
-                <h3 class=" ">genContainerConfig()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">genContainerConfig(string  <span class="argument">$ffurl = FIREFOXURL</span>, string  <span class="argument">$port = &quot;5900&quot;</span>, string  <span class="argument">$image = &quot;local/ffviewer:standard&quot;</span>) : \Docker\API\Model\ContainerConfig</pre>
-                <p><em>Generates a container configuration with a base set of properties.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$ffurl </td>
-                                <td><p>URL to point container's browser to</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$port </td>
-                                <td><p>to be used by NoVnc</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>string</td>
-                                <td>$image </td>
-                                <td><p>image to be used to create container</p></td>
-                            </tr>
-                                            </table>
-                
-                
-                                    <h4>Returns</h4>
-                    \Docker\API\Model\ContainerConfig
-                                            &mdash; <p>a containerConfig class with paremeters set</p>
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                    <dt>File</dt>
-                    <dd><a href=""><div class="path-wrapper"></div></a></dd>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            package
-                        </th>
-                        <td>
-                                                                                            <p>Default</p>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                        <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_getRequestedContainerType" name="method_getRequestedContainerType" class="anchor"></a>
-            <article class="method">
-                <h3 class=" ">getRequestedContainerType()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getRequestedContainerType(string  <span class="argument">$type</span>, array  <span class="argument">$imagesAvailable</span>) : string</pre>
-                <p><em>Returns right container image for required type, exception raised if wrong or unset.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$type </td>
-                                <td><p>the desired image type</p></td>
-                            </tr>
-                                                    <tr>
-                                <td>array</td>
-                                <td>$imagesAvailable </td>
-                                <td><p>the array containing the supported images</p></td>
-                            </tr>
-                                            </table>
-                
-                                    <h4>Throws</h4>
-                    <dl>
-                                                    <dt>\getParameterException</dt>
-                            <dd><p>Requested content type is unsupported or unset if the type is not supported or it wasn0t set</p></dd>
-                                                                    </dl>
-                
-                                    <h4>Returns</h4>
-                    string
-                                            &mdash; <p>The image needed for the requested type</p>
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                    <dt>File</dt>
-                    <dd><a href=""><div class="path-wrapper"></div></a></dd>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            package
-                        </th>
-                        <td>
-                                                                                            <p>Default</p>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                        <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_getRequestedTicket" name="method_getRequestedTicket" class="anchor"></a>
-            <article class="method">
-                <h3 class=" ">getRequestedTicket()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getRequestedTicket(string  <span class="argument">$ticket</span>) : string</pre>
-                <p><em>Returns ticket string from client call, exception raised if wrong or unset.</em></p>
-                
-
-                                    <h4>Parameters</h4>
-                    <table class="table table-condensed table-hover">
-                                                    <tr>
-                                <td>string</td>
-                                <td>$ticket </td>
-                                <td><p>the ticket comunicated by the client</p></td>
-                            </tr>
-                                            </table>
-                
-                                    <h4>Throws</h4>
-                    <dl>
-                                                    <dt>\getParameterException</dt>
-                            <dd><p>if Supplied ticket is different from what we expect</p></dd>
-                                                                    </dl>
-                
-                                    <h4>Returns</h4>
-                    string
-                                            &mdash; <p>Returns the ticket once verified it's of the correct lenght</p>
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                    <dt>File</dt>
-                    <dd><a href=""><div class="path-wrapper"></div></a></dd>
-                                                                            </dl>
-            <h2>Tags</h2>
-            <table class="table table-condensed">
-                                    <tr>
-                        <th>
-                            package
-                        </th>
-                        <td>
-                                                                                            <p>Default</p>
-                                                    </td>
-                    </tr>
-                            </table>
-        </aside>
-    </div>
-
-                                        <div class="row-fluid">
-        <div class="span8 content class">
-            <a id="method_portCheck" name="method_portCheck" class="anchor"></a>
-            <article class="method">
-                <h3 class=" ">portCheck()</h3>
-                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">portCheck() : integer</pre>
-                <p><em>Returns the firs available port starting from FIRS_PORT.</em></p>
-                
-
-                
-                                    <h4>Throws</h4>
-                    <dl>
-                                                    <dt>\dockerUtilsException</dt>
-                            <dd><p>if No available port left</p></dd>
-                                                                    </dl>
-                
-                                    <h4>Returns</h4>
-                    integer
-                                            &mdash; <p>Returns the firs available port starting from FIRS_PORT</p>
-                                    				
-                            </article>
-        </div>
-        <aside class="span4 detailsbar">
-            <h1><i class="icon-arrow-down"></i></h1>
-                                                            <dl>
-                                    <dt>File</dt>
-                    <dd><a href=""><div class="path-wrapper"></div></a></dd>
+                    <dd><a href=""><div class="path-wrapper">dockerUtils.php</div></a></dd>
                                                                             </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
@@ -654,7 +583,157 @@
             <h1><i class="icon-arrow-down"></i></h1>
                                                             <dl>
                                     <dt>File</dt>
-                    <dd><a href=""><div class="path-wrapper"></div></a></dd>
+                    <dd><a href=""><div class="path-wrapper">dockerUtils.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_portCheck" name="method_portCheck" class="anchor"></a>
+            <article class="method">
+                <h3 class=" ">portCheck()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">portCheck() : integer</pre>
+                <p><em>Returns the firs available port starting from FIRS_PORT.</em></p>
+                
+
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\dockerUtilsException</dt>
+                            <dd><p>if No available port left</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    integer
+                                            &mdash; <p>Returns the firs available port starting from FIRS_PORT</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href=""><div class="path-wrapper">dockerUtils.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getRequestedContainerType" name="method_getRequestedContainerType" class="anchor"></a>
+            <article class="method">
+                <h3 class=" ">getRequestedContainerType()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getRequestedContainerType(string  <span class="argument">$type</span>, array  <span class="argument">$imagesAvailable</span>) : string</pre>
+                <p><em>Returns right container image for required type, exception raised if wrong or unset.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$type </td>
+                                <td><p>the desired image type</p></td>
+                            </tr>
+                                                    <tr>
+                                <td>array</td>
+                                <td>$imagesAvailable </td>
+                                <td><p>the array containing the supported images</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\getParameterException</dt>
+                            <dd><p>Requested content type is unsupported or unset if the type is not supported or it wasn0t set</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The image needed for the requested type</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href=""><div class="path-wrapper">dockerUtils.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                                                            <p>Default</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_getRequestedTicket" name="method_getRequestedTicket" class="anchor"></a>
+            <article class="method">
+                <h3 class=" ">getRequestedTicket()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">getRequestedTicket(string  <span class="argument">$ticket</span>) : string</pre>
+                <p><em>Returns ticket string from client call, exception raised if wrong or unset.</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$ticket </td>
+                                <td><p>the ticket comunicated by the client</p></td>
+                            </tr>
+                                            </table>
+                
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\getParameterException</dt>
+                            <dd><p>if Supplied ticket is different from what we expect</p></dd>
+                                                                    </dl>
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>Returns the ticket once verified it's of the correct lenght</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href=""><div class="path-wrapper">dockerUtils.php</div></a></dd>
                                                                             </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
@@ -674,6 +753,16 @@
         </div>
     </section>
 
+    <div id="source-view" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="source-view-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="source-view-label"></h3>
+        </div>
+        <div class="modal-body">
+            <pre data-src="../files/dockerUtils.php.txt" class="language-php line-numbers"></pre>
+        </div>
+    </div>
+
     <footer class="row-fluid">
         <section class="span10 offset2">
             <section class="row-fluid">
@@ -690,7 +779,7 @@
                                                         <h1><i class="icon-bar-chart"></i></h1>
                             <div>
                                 <ul>
-                                    <li><a href="graphs/class.html">Class Hierarchy Diagram</a></li>
+                                    <li><a href="../graphs/class.html">Class Hierarchy Diagram</a></li>
                                 </ul>
                             </div>
                         </section>
@@ -698,8 +787,8 @@
                                                         <h1><i class="icon-pushpin"></i></h1>
                             <div>
                                 <ul>
-                                    <li><a href="reports/errors.html">Errors</a></li>
-                                    <li><a href="reports/markers.html">Markers</a></li>
+                                    <li><a href="../reports/errors.html">Errors</a></li>
+                                    <li><a href="../reports/markers.html">Markers</a></li>
                                 </ul>
                             </div>
                         </section>
