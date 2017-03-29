@@ -12,11 +12,6 @@
  */
 
 
-/**
- * Lupo.
- *
- */
-
 require 'vendor/autoload.php';
 
 use Docker\Docker;
@@ -24,17 +19,17 @@ use Docker\DockerClient;
 use Docker\API\Model\ContainerConfig;
 use Docker\API\Model\HostConfig;
 
-/** @var string Should be the address of the Docker host */
+/** Should be the address of the Docker host */
 define( "DOCKER_HOST",      "192.168.7.5");
-/** @var string Should be the maximum number of containers*/
+/** Should be the maximum number of containers*/
 define( "MAX_CONTAINER",    "250");
-/** @var string Should be the first available port where VNC will connect to */
+/** Should be the first available port where VNC will connect to */
 define( "FIRS_PORT",        "5900");
-/** @var string Should be the base Firefox URL if undefined*/
+/** Should be the base Firefox URL if undefined. */
 define( "FIREFOXURL",       "http://md-www.test.bncf.lan/index.php/opac/");
-/** @var string Should be the address the Docker daemon is listening to, API version is present to ensure compatibility */
+/** Should be the address the Docker daemon is listening to, API version is present to ensure compatibility */
 define( "REMOTE_SOCKET",    "tcp://127.0.0.1:2375/v1.24");
-/** @var string Should be the leght of the ticket string */
+/** Should be the leght of the ticket string */
 define( "TICKET_LEN",       36);
 
 /**
@@ -73,10 +68,12 @@ try {
  * Generates a container configuration with a base set of properties.
  *
  * @param string $ffurl URL to point container's browser to
- * @param string $port to be used by NoVnc
+ * @param string $port port to be used by NoVnc
  * @param string $image image to be used to create container
  *
- * @return ContainerConfig a containerConfig class with paremeters set
+ * @return \Docker\API\Model\ContainerConfig a containerConfig class with paremeters set.
+ *
+ * TODO: Catch exception that might come from HostConfig, ContainerConfig ang setHostConfig
  *
  */
 function genContainerConfig ($ffurl=FIREFOXURL,
@@ -127,7 +124,7 @@ function genContainerConfig ($ffurl=FIREFOXURL,
 /**
  * Create a container with firefox url and port set.
  *
- * @param ContainerManager $containerManager the containerManager we are using
+ * @param \Docker\Manager\ContainerManager $containerManager the containerManager we are using
  * @param string $port to be used by NoVnc
  * @param string $ffurl URL to point container's browser to
  * @param string $image image to be used to create container
@@ -139,8 +136,6 @@ function genContainerConfig ($ffurl=FIREFOXURL,
  */
 function createContainer($containerManager, $port, $ffurl=FIREFOXURL, $image){
 
-    //Sets the values for this instance
-    //TODO: cath errors
     $contConfig = genContainerConfig($ffurl, $port, $image);
 
     $containerCreateResult = $containerManager->create($contConfig);
@@ -156,7 +151,7 @@ function createContainer($containerManager, $port, $ffurl=FIREFOXURL, $image){
 /**
  * Start the container passed as ID.
  *
- * @param ContainerManager $containerManager the containerManager we are using
+ * @param \Docker\Manager\ContainerManager $containerManager the containerManager we are using
  * @param string $id the id of the container that should be started
  *
  * @return true if the container was started succesfuly
@@ -225,10 +220,13 @@ function portCheck(){
  *
  * @return string The image needed for the requested type
  *
- * @throws getParameterException Requested content type is unsupported or unset if the type is not supported or it wasn0t set
+ * @throws getParameterException "Requested content type is unsupported or unset" if the type is not supported or it wasn't set
+ *
  *
  */
 function getRequestedContainerType ($type , $imagesAvailable ) {
+
+    // TODO: Differentiate messages if $type is not set
     if ( (! isset( $type )) or (! in_array($type, array_keys($imagesAvailable) ) ) ){
         throw new getParameterException('Requested content type is unsupported or unset');
     }

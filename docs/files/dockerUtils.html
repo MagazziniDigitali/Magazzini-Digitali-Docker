@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
     <meta charset="utf-8"/>
-    <title>API Documentation</title>
+    <title>Visualizzatore Remoto | Documentazione</title>
     <meta name="author" content=""/>
     <meta name="description" content=""/>
 
@@ -83,7 +83,7 @@
             <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
                 <i class="icon-ellipsis-vertical"></i>
             </a>
-            <a class="brand" href="../index.html">API Documentation</a>
+            <a class="brand" href="../index.html">Visualizzatore Remoto | Documentazione</a>
 
             <div class="nav-collapse">
                 <ul class="nav pull-right">
@@ -106,7 +106,7 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">0</span>
+                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">1</span>
                                 </a>
                             </li>
                             <li>
@@ -136,10 +136,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-915166909"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1515289295"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-915166909" class="accordion-body collapse in">
+            <div id="namespace-1515289295" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -163,9 +163,8 @@
 
                     <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
                     <h1><small></small>dockerUtils.php</h1>
-                    <p><em>dockerUtils file, name is self-explaining.</em></p>
-                    <p>This file contains function and constants needed to interact with Docker daemon
-as well as some utils functions which are needed to manage containers</p>
+                    <p><em></em></p>
+                    
 
                     
                     
@@ -191,30 +190,7 @@ as well as some utils functions which are needed to manage containers</p>
                     </dl>
                     <h2>Tags</h2>
                     <table class="table table-condensed">
-                                                    <tr>
-                                <th>
-                                    author
-                                </th>
-                                <td>
-                                                                            <p>svalo@libersoft.it</p>
-                                                                    </td>
-                            </tr>
-                                                    <tr>
-                                <th>
-                                    copyright
-                                </th>
-                                <td>
-                                                                            <p>???</p>
-                                                                    </td>
-                            </tr>
-                                                    <tr>
-                                <th>
-                                    license
-                                </th>
-                                <td>
-                                                                            <p>???</p>
-                                                                    </td>
-                            </tr>
+                                                    <tr><td colspan="2"><em>None found</em></td></tr>
                                             </table>
 
                 </aside>
@@ -233,7 +209,7 @@ as well as some utils functions which are needed to manage containers</p>
             <article id="constant_DOCKER_HOST" class="constant">
                 <h3 class="">DOCKER_HOST</h3>
                 <pre class="signature">DOCKER_HOST</pre>
-                <p><em></em></p>
+                <p><em>Should be the address of the Docker host</em></p>
                 
             </article>
         </div>
@@ -263,7 +239,7 @@ as well as some utils functions which are needed to manage containers</p>
             <article id="constant_MAX_CONTAINER" class="constant">
                 <h3 class="">MAX_CONTAINER</h3>
                 <pre class="signature">MAX_CONTAINER</pre>
-                <p><em></em></p>
+                <p><em>Should be the maximum number of containers</em></p>
                 
             </article>
         </div>
@@ -293,7 +269,7 @@ as well as some utils functions which are needed to manage containers</p>
             <article id="constant_FIRS_PORT" class="constant">
                 <h3 class="">FIRS_PORT</h3>
                 <pre class="signature">FIRS_PORT</pre>
-                <p><em></em></p>
+                <p><em>Should be the first available port where VNC will connect to</em></p>
                 
             </article>
         </div>
@@ -323,7 +299,7 @@ as well as some utils functions which are needed to manage containers</p>
             <article id="constant_FIREFOXURL" class="constant">
                 <h3 class="">FIREFOXURL</h3>
                 <pre class="signature">FIREFOXURL</pre>
-                <p><em></em></p>
+                <p><em>Should be the base Firefox URL if undefined.</em></p>
                 
             </article>
         </div>
@@ -353,7 +329,7 @@ as well as some utils functions which are needed to manage containers</p>
             <article id="constant_REMOTE_SOCKET" class="constant">
                 <h3 class="">REMOTE_SOCKET</h3>
                 <pre class="signature">REMOTE_SOCKET</pre>
-                <p><em></em></p>
+                <p><em>Should be the address the Docker daemon is listening to, API version is present to ensure compatibility</em></p>
                 
             </article>
         </div>
@@ -383,7 +359,7 @@ as well as some utils functions which are needed to manage containers</p>
             <article id="constant_TICKET_LEN" class="constant">
                 <h3 class="">TICKET_LEN</h3>
                 <pre class="signature">TICKET_LEN</pre>
-                <p><em></em></p>
+                <p><em>Should be the leght of the ticket string</em></p>
                 
             </article>
         </div>
@@ -435,7 +411,7 @@ as well as some utils functions which are needed to manage containers</p>
                                                     <tr>
                                 <td>string</td>
                                 <td>$port </td>
-                                <td><p>to be used by NoVnc</p></td>
+                                <td><p>port to be used by NoVnc</p></td>
                             </tr>
                                                     <tr>
                                 <td>string</td>
@@ -447,7 +423,8 @@ as well as some utils functions which are needed to manage containers</p>
                 
                                     <h4>Returns</h4>
                     \Docker\API\Model\ContainerConfig
-                                            &mdash; <p>a containerConfig class with paremeters set</p>
+                                            &mdash; <p>a containerConfig class with paremeters set.</p>
+<p>TODO: Catch exception that might come from HostConfig, ContainerConfig ang setHostConfig</p>
                                     				
                             </article>
         </div>
@@ -477,14 +454,14 @@ as well as some utils functions which are needed to manage containers</p>
             <article class="method">
                 <h3 class=" ">createContainer()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">createContainer(\ContainerManager  <span class="argument">$containerManager</span>, string  <span class="argument">$port</span>, string  <span class="argument">$ffurl = FIREFOXURL</span>, string  <span class="argument">$image</span>) : string</pre>
+                <pre class="signature" style="margin-right: 54px;">createContainer(\Docker\Manager\ContainerManager  <span class="argument">$containerManager</span>, string  <span class="argument">$port</span>, string  <span class="argument">$ffurl = FIREFOXURL</span>, string  <span class="argument">$image</span>) : string</pre>
                 <p><em>Create a container with firefox url and port set.</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>\ContainerManager</td>
+                                <td>\Docker\Manager\ContainerManager</td>
                                 <td>$containerManager </td>
                                 <td><p>the containerManager we are using</p></td>
                             </tr>
@@ -543,14 +520,14 @@ as well as some utils functions which are needed to manage containers</p>
             <article class="method">
                 <h3 class=" ">startContainer()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">startContainer(\ContainerManager  <span class="argument">$containerManager</span>, string  <span class="argument">$id</span>) : true</pre>
+                <pre class="signature" style="margin-right: 54px;">startContainer(\Docker\Manager\ContainerManager  <span class="argument">$containerManager</span>, string  <span class="argument">$id</span>) : true</pre>
                 <p><em>Start the container passed as ID.</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>\ContainerManager</td>
+                                <td>\Docker\Manager\ContainerManager</td>
                                 <td>$containerManager </td>
                                 <td><p>the containerManager we are using</p></td>
                             </tr>
@@ -669,7 +646,7 @@ as well as some utils functions which are needed to manage containers</p>
                                     <h4>Throws</h4>
                     <dl>
                                                     <dt>\getParameterException</dt>
-                            <dd><p>Requested content type is unsupported or unset if the type is not supported or it wasn0t set</p></dd>
+                            <dd><p>&quot;Requested content type is unsupported or unset&quot; if the type is not supported or it wasn't set</p></dd>
                                                                     </dl>
                 
                                     <h4>Returns</h4>
@@ -799,7 +776,7 @@ as well as some utils functions which are needed to manage containers</p>
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on March 28th, 2017 at 16:19.
+                    on March 29th, 2017 at 08:00.
                 </section>
             </section>
         </section>
