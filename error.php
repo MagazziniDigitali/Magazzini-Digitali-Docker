@@ -1,5 +1,25 @@
 <!DOCTYPE html>
 <?php
+
+/**
+ * error.php file, provides user-friendly messages when something goes wrong.
+ *
+ * This file is used to print out messages accordingly to errors happening in index.php
+ *
+ * @author svalo@libersoft.it
+ * @copyright ???
+ * @license   ???
+ *
+ */
+
+    /**
+     * Prints error message based on index received
+     *
+     * @param string $err the error message index in $errorCodes array
+     *
+     * @return string the error message
+     *
+     */
 	function printError ($err) {
 	$errorCodes=[
 		"1" => "Ticket invalido",
