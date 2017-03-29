@@ -73,8 +73,6 @@ try {
  *
  * @return \Docker\API\Model\ContainerConfig a containerConfig class with paremeters set.
  *
- * TODO: Catch exception that might come from HostConfig, ContainerConfig ang setHostConfig
- *
  */
 function genContainerConfig ($ffurl=FIREFOXURL,
     $port="5900", $image="local/ffviewer:standard") {
@@ -222,11 +220,8 @@ function portCheck(){
  *
  * @throws getParameterException "Requested content type is unsupported or unset" if the type is not supported or it wasn't set
  *
- *
  */
 function getRequestedContainerType ($type , $imagesAvailable ) {
-
-    // TODO: Differentiate messages if $type is not set
     if ( (! isset( $type )) or (! in_array($type, array_keys($imagesAvailable) ) ) ){
         throw new getParameterException('Requested content type is unsupported or unset');
     }

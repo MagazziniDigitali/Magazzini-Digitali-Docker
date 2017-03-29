@@ -136,10 +136,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1886631362"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1803757729"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1886631362" class="accordion-body collapse in">
+            <div id="namespace-1803757729" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -163,11 +163,9 @@
                                                                     </nav>
 
                     <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
-                    <h1><small></small>dockerSettings.php.sample</h1>
-                    <p><em>This file contains configuration parameters
-needed to communicate with authentication interface
-as well as to create docker containers.</em></p>
-                    
+                    <h1><small></small>error.php</h1>
+                    <p><em>error.php file, provides user-friendly messages when something goes wrong.</em></p>
+                    <p>This file is used to print out messages accordingly to errors happening in index.php</p>
 
                     
                     
@@ -182,14 +180,90 @@ as well as to create docker containers.</em></p>
                     </dl>
                     <h2>Tags</h2>
                     <table class="table table-condensed">
-                                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                                                    <tr>
+                                <th>
+                                    author
+                                </th>
+                                <td>
+                                                                            <p>svalo@libersoft.it</p>
+                                                                    </td>
+                            </tr>
+                                                    <tr>
+                                <th>
+                                    copyright
+                                </th>
+                                <td>
+                                                                            <p>???</p>
+                                                                    </td>
+                            </tr>
+                                                    <tr>
+                                <th>
+                                    license
+                                </th>
+                                <td>
+                                                                            <p>???</p>
+                                                                    </td>
+                            </tr>
                                             </table>
 
                 </aside>
             </div>
 
             
-            
+                        <div class="row-fluid">
+                <section class="span8 content file">
+                    <h2>Functions</h2>
+                </section>
+                <aside class="span4 detailsbar"></aside>
+            </div>
+
+                                        <div class="row-fluid">
+        <div class="span8 content class">
+            <a id="method_printError" name="method_printError" class="anchor"></a>
+            <article class="method">
+                <h3 class=" ">printError()</h3>
+                <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
+                <pre class="signature" style="margin-right: 54px;">printError(string  <span class="argument">$err</span>) : string</pre>
+                <p><em>Prints error message based on index received</em></p>
+                
+
+                                    <h4>Parameters</h4>
+                    <table class="table table-condensed table-hover">
+                                                    <tr>
+                                <td>string</td>
+                                <td>$err </td>
+                                <td><p>the error message index in $errorCodes array</p></td>
+                            </tr>
+                                            </table>
+                
+                
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>the error message</p>
+                                    				
+                            </article>
+        </div>
+        <aside class="span4 detailsbar">
+            <h1><i class="icon-arrow-down"></i></h1>
+                                                            <dl>
+                                    <dt>File</dt>
+                    <dd><a href=""><div class="path-wrapper">error.php</div></a></dd>
+                                                                            </dl>
+            <h2>Tags</h2>
+            <table class="table table-condensed">
+                                    <tr>
+                        <th>
+                            package
+                        </th>
+                        <td>
+                                                                                            <p>VisualizzatoreRemoto</p>
+                                                    </td>
+                    </tr>
+                            </table>
+        </aside>
+    </div>
+
+                            
         </div>
     </section>
 
@@ -199,7 +273,7 @@ as well as to create docker containers.</em></p>
             <h3 id="source-view-label"></h3>
         </div>
         <div class="modal-body">
-            <pre data-src="../files/dockerSettings.php.sample.txt" class="language-php line-numbers"></pre>
+            <pre data-src="../files/error.php.txt" class="language-php line-numbers"></pre>
         </div>
     </div>
 
