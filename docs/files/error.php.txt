@@ -15,9 +15,9 @@
     /**
      * Prints error message based on index received
      *
-     * @param string $err the error message index in $errorCodes array
+     * @param string $err The error message index in $errorCodes array
      *
-     * @return string the error message
+     * @return string The error message
      *
      */
 	function printError ($err) {

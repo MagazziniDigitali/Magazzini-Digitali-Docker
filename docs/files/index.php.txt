@@ -1,17 +1,27 @@
 <?php
+/**
+ * Main file, all the other files are included here.
+ *
+ * Actually  do things, checks authorizations and then creates container
+ *
+ * @author svalo@libersoft.it
+ * @copyright ???
+ * @license   ???
+ *
+ */
+
 
 require 'vendor/autoload.php';
 require 'dockerSettings.php';
 require 'dockerUtils.php';
 require 'ticketInterface.php';
 
-
-///////////////////////////////////////
-//                                   //
-// Checks if user can access content //
-//                                   //
-///////////////////////////////////////
-
+/**
+ * User is not authorized by default.
+ *
+ * Checks if this page was called with a ticket and checks if it is in a valid format.
+ *
+ */
 $isUserAuthorized = FALSE;
 try {
     if (!isset($_GET['idTicket'])){
@@ -24,6 +34,11 @@ try {
 	exit();
 }
 
+/**
+ * Checks if the ticket is still valid according to the authentication system.
+ *
+ */
+
 try {
     $authenticationUserOutput = checkWsdlTicket($CheckTicketUrl, $CheckTicketUsername, $CheckTicketPassword, $ticket );
 } catch(WsdlException $e) {
@@ -32,6 +47,11 @@ try {
 	exit();
 }
 
+/**
+ * Checks whether we received error messages or no, if not user is authorized.
+ * If user is authorized checks which image is needed for this request.
+ *
+ */
 if (!empty($authenticationUserOutput->errorMsg)){
 	error_log("Error Msg: ".$authenticationUserOutput->errorMsg->errorType." - ".$authenticationUserOutput->errorMsg->msgError."\n");
 	header('Location: /error.php?err=3');
@@ -48,13 +68,12 @@ if (!empty($authenticationUserOutput->errorMsg)){
 	}
 }
 
-///////////////////////////////////
-//                               //
-// Actually creating containers  //
-//                               //
-///////////////////////////////////
+
+/**
+ * If the user is authorized checks for the first available port.
+ *
+ */
 if ( $isUserAuthorized ) {
-	//Checks for firs available port in range
 	try {
 		$port = (string)portCheck();
 	} catch(dockerUtilsException $e) {
@@ -62,6 +81,10 @@ if ( $isUserAuthorized ) {
 		header('Location: /error.php?err=5');
 		exit();
 	}
+    /**
+     * Initilizes a container based on pre-defined parameters and the ones got from the auth. interface.
+     *
+     */
 	try {
 		$containerId = createContainer($containerManager, $port, $url, $image);
 	} catch(dockerUtilsException $e) {
@@ -69,6 +92,10 @@ if ( $isUserAuthorized ) {
 		header('Location: /error.php?err=6');
 		exit();
 	}
+    /**
+     * Starts the given $containerId, if succesfull redirects the client to the appropriate page.
+     *
+     */
 	try {
 		$isStarted = startContainer($containerManager, $containerId);
 	} catch(dockerUtilsException $e) {

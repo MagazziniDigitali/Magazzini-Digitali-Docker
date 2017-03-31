@@ -106,7 +106,7 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">17</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">1</span>
                                 </a>
                             </li>
                             <li>
@@ -136,10 +136,10 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-477002608"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-2028753441"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-477002608" class="accordion-body collapse in">
+            <div id="namespace-2028753441" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                     
@@ -164,8 +164,10 @@
 
                     <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
                     <h1><small></small>ticketInterface.php</h1>
-                    <p><em></em></p>
-                    
+                    <p><em>This file provides an interface to the wsdl serverlet.</em></p>
+                    <p>Here are defined the needed functions to communicate with the serverlet.
+The serverlet is responsible of verifying if acces to a file is granted to a client owning a tocken and to return an address and a file type to
+acceess it.</p>
 
                     
                     
@@ -173,7 +175,7 @@
                     <table class="table table-hover">
                                             <tr>
                             <td><a href="../classes/WsdlException.html">WsdlException</a></td>
-                            <td><em></em></td>
+                            <td><em>Exception is thrown if something goes wrong with the authentication.</em></td>
                         </tr>
                                         </table>
                                     </div>
@@ -181,13 +183,36 @@
                 <aside class="span4 detailsbar">
                     <dl>
                                                     <dt>Package</dt>
-                            <dd><div class="namespace-wrapper">\VisualizzatoreRemoto</div></dd>
+                            <dd><div class="namespace-wrapper">\VisualizzatoreRemoto\ticketInterface</div></dd>
                         
                         
                     </dl>
                     <h2>Tags</h2>
                     <table class="table table-condensed">
-                                                    <tr><td colspan="2"><em>None found</em></td></tr>
+                                                    <tr>
+                                <th>
+                                    author
+                                </th>
+                                <td>
+                                                                            <p>svalo@libersoft.it</p>
+                                                                    </td>
+                            </tr>
+                                                    <tr>
+                                <th>
+                                    copyright
+                                </th>
+                                <td>
+                                                                            <p>???</p>
+                                                                    </td>
+                            </tr>
+                                                    <tr>
+                                <th>
+                                    license
+                                </th>
+                                <td>
+                                                                            <p>???</p>
+                                                                    </td>
+                            </tr>
                                             </table>
 
                 </aside>
@@ -207,31 +232,39 @@
             <article class="method">
                 <h3 class=" ">authenticationSoftware()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">authenticationSoftware(  <span class="argument">$url</span>,   <span class="argument">$login</span>,   <span class="argument">$password</span>) </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">authenticationSoftware(string  <span class="argument">$url</span>, string  <span class="argument">$login</span>, string  <span class="argument">$password</span>) : object</pre>
+                <p><em>Sends login and password to the authenticator</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$url </td>
-                                <td></td>
+                                <td><p>The URL of the authenticator wsdl endpoint</p></td>
                             </tr>
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$login </td>
-                                <td></td>
+                                <td><p>The username</p></td>
                             </tr>
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$password </td>
-                                <td></td>
+                                <td><p>The username password</p></td>
                             </tr>
                                             </table>
                 
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\WsdlException</dt>
+                            <dd><p>&quot;Riscontrato un errore nella verifica Software [errors] &quot; in case of a SoapFault exception</p></dd>
+                                                                    </dl>
                 
-                				
+                                    <h4>Returns</h4>
+                    object
+                                            &mdash; <p>The object containing the needed parameters to connect to the authentication interface</p>
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -247,7 +280,7 @@
                             package
                         </th>
                         <td>
-                                                                                            <p>VisualizzatoreRemoto</p>
+                                                                                            <p>VisualizzatoreRemoto\ticketInterface</p>
                                                     </td>
                     </tr>
                             </table>
@@ -260,26 +293,29 @@
             <article class="method">
                 <h3 class=" ">readParameter()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">readParameter(  <span class="argument">$software</span>,   <span class="argument">$param</span>) </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">readParameter(object  <span class="argument">$software</span>, string  <span class="argument">$param</span>) : string</pre>
+                <p><em>Parses the answer received from the wsdl and extract the URL of the ticketInterface</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td></td>
+                                <td>object</td>
                                 <td>$software </td>
-                                <td></td>
+                                <td><p>The object containing the needed parameters to connect to the authentication interface</p></td>
                             </tr>
                                                     <tr>
-                                <td></td>
+                                <td>string</td>
                                 <td>$param </td>
-                                <td></td>
+                                <td><p>The object to access in the $software object</p></td>
                             </tr>
                                             </table>
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The URL to call to authenticate</p>
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -295,7 +331,7 @@
                             package
                         </th>
                         <td>
-                                                                                            <p>VisualizzatoreRemoto</p>
+                                                                                            <p>VisualizzatoreRemoto\ticketInterface</p>
                                                     </td>
                     </tr>
                             </table>
@@ -308,13 +344,16 @@
             <article class="method">
                 <h3 class=" ">getIpClient()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getIpClient() </pre>
-                <p><em></em></p>
+                <pre class="signature" style="margin-right: 54px;">getIpClient() : string</pre>
+                <p><em>Retrieves client IP using different methods</em></p>
                 
 
                 
                 
-                				
+                                    <h4>Returns</h4>
+                    string
+                                            &mdash; <p>The client IP address</p>
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -330,7 +369,7 @@
                             package
                         </th>
                         <td>
-                                                                                            <p>VisualizzatoreRemoto</p>
+                                                                                            <p>VisualizzatoreRemoto\ticketInterface</p>
                                                     </td>
                     </tr>
                             </table>
@@ -343,36 +382,46 @@
             <article class="method">
                 <h3 class=" ">checkWsdlTicket()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">checkWsdlTicket(  <span class="argument">$url</span>,   <span class="argument">$login</span>,   <span class="argument">$password</span>,   <span class="argument">$ticket</span>) </pre>
-                <p><em></em></p>
-                
+                <pre class="signature" style="margin-right: 54px;">checkWsdlTicket(  <span class="argument">$url</span>,   <span class="argument">$login</span>,   <span class="argument">$password</span>,   <span class="argument">$ticket</span>) : object</pre>
+                <p><em>Interacts with the remote ticketInterface wsdl</em></p>
+                <p>Calls the remote ticketInterface wsdl, authenticate the software making the call, checks if the provided ticket is still valid and associated with
+the caller IP. If everything is fine returns an object containing the ticket, the url where to get the object from and the file type of the object.
+If problems occourred an error message is returned or an exception is thrown.</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
                                 <td></td>
                                 <td>$url </td>
-                                <td></td>
+                                <td><p>The URL to the wsdl endpoint</p></td>
                             </tr>
                                                     <tr>
                                 <td></td>
                                 <td>$login </td>
-                                <td></td>
+                                <td><p>The username of the software</p></td>
                             </tr>
                                                     <tr>
                                 <td></td>
                                 <td>$password </td>
-                                <td></td>
+                                <td><p>The password of the software</p></td>
                             </tr>
                                                     <tr>
                                 <td></td>
                                 <td>$ticket </td>
-                                <td></td>
+                                <td><p>The ticket received by the client</p></td>
                             </tr>
                                             </table>
                 
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\WsdlException</dt>
+                            <dd><p>&quot;Riscontrato un errore nella verifica dell' oggetto [error]&quot; if something went wrong during the verification of the object</p></dd>
+                                                                    </dl>
                 
-                				
+                                    <h4>Returns</h4>
+                    object
+                                            &mdash; <p>The object containing the parameters to access the required object or the error message.</p>
+                                    				
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -388,7 +437,7 @@
                             package
                         </th>
                         <td>
-                                                                                            <p>VisualizzatoreRemoto</p>
+                                                                                            <p>VisualizzatoreRemoto\ticketInterface</p>
                                                     </td>
                     </tr>
                             </table>
@@ -445,7 +494,7 @@
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on March 29th, 2017 at 14:55.
+                    on March 31st, 2017 at 10:48.
                 </section>
             </section>
         </section>
