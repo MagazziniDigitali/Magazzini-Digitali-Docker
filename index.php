@@ -1,16 +1,20 @@
 <?php
+/**
+ * Main file, all the other files are included here.
+ *
+ * Actually  do things, checks authorizations and then creates container
+ *
+ * @author svalo@libersoft.it
+ * @copyright ???
+ * @license   ???
+ *
+ */
+
 
 require 'vendor/autoload.php';
 require 'dockerSettings.php';
 require 'dockerUtils.php';
 require 'ticketInterface.php';
-
-
-///////////////////////////////////////
-//                                   //
-// Checks if user can access content //
-//                                   //
-///////////////////////////////////////
 
 /**
  * User is not authorized by default.
@@ -64,11 +68,6 @@ if (!empty($authenticationUserOutput->errorMsg)){
 	}
 }
 
-///////////////////////////////////
-//                               //
-// Actually creating containers  //
-//                               //
-///////////////////////////////////
 
 /**
  * If the user is authorized checks for the first available port.
