@@ -8,6 +8,7 @@
  * @author svalo@libersoft.it
  * @copyright ???
  * @license   ???
+ * @package VisualizzatoreRemoto\dockerUtils
  *
  */
 
@@ -68,10 +69,10 @@ try {
  * Generates a container configuration with a base set of properties.
  *
  * @param string $ffurl URL to point container's browser to
- * @param string $port port to be used by NoVnc
- * @param string $image image to be used to create container
+ * @param string $port Port to be used by NoVnc
+ * @param string $image Image to be used to create container
  *
- * @return \Docker\API\Model\ContainerConfig a containerConfig class with paremeters set.
+ * @return \Docker\API\Model\ContainerConfig A containerConfig class with paremeters set.
  *
  */
 function genContainerConfig ($ffurl=FIREFOXURL,
@@ -123,13 +124,13 @@ function genContainerConfig ($ffurl=FIREFOXURL,
  * Create a container with firefox url and port set.
  *
  * @param \Docker\Manager\ContainerManager $containerManager the containerManager we are using
- * @param string $port to be used by NoVnc
+ * @param string $port To be used by NoVnc
  * @param string $ffurl URL to point container's browser to
- * @param string $image image to be used to create container
+ * @param string $image Image to be used to create container
  *
- * @return string the id of the created continer
+ * @return string The id of the created continer
  *
- * @throws dockerUtilsException if the warning message is not Null
+ * @throws dockerUtilsException "Failed to create container: returncode" if the warning message is not Null
  *
  */
 function createContainer($containerManager, $port, $ffurl=FIREFOXURL, $image){
@@ -149,15 +150,15 @@ function createContainer($containerManager, $port, $ffurl=FIREFOXURL, $image){
 /**
  * Start the container passed as ID.
  *
- * @param \Docker\Manager\ContainerManager $containerManager the containerManager we are using
- * @param string $id the id of the container that should be started
+ * @param \Docker\Manager\ContainerManager $containerManager The containerManager we are using
+ * @param string $id The id of the container that should be started
  *
- * @return true if the container was started succesfuly
+ * @return true If the container was started succesfuly
  *
- * @throws dockerUtilsException 304 if Container already started
- * @throws dockerUtilsException 404 if Container does not exist
- * @throws dockerUtilsException 504 if Generic server error
- * @throws dockerUtilsException if Invalid response from Docker
+ * @throws dockerUtilsException "Container already started" if getStatusCode is 304
+ * @throws dockerUtilsException "Container does not exist" if getStatusCode is 404
+ * @throws dockerUtilsException "Generic server error" if getStatusCode is 504
+ * @throws dockerUtilsException "Invalid response from Docker" if anything else
  *
  */
 function startContainer($containerManager, $id){
@@ -181,7 +182,7 @@ function startContainer($containerManager, $id){
  *
  * @return int Returns the firs available port starting from FIRS_PORT
  *
- * @throws dockerUtilsException if No available port left
+ * @throws dockerUtilsException "No available port left" if no available port left
  *
  */
 function portCheck(){
@@ -213,8 +214,8 @@ function portCheck(){
 /**
  * Returns right container image for required type, exception raised if wrong or unset.
  *
- * @param string $type the desired image type
- * @param array $imagesAvailable the array containing the supported images
+ * @param string $type The desired image type
+ * @param array $imagesAvailable The array containing the supported images
  *
  * @return string The image needed for the requested type
  *
@@ -231,11 +232,11 @@ function getRequestedContainerType ($type , $imagesAvailable ) {
 /**
  * Returns ticket string from client call, exception raised if wrong or unset.
  *
- * @param string $ticket the ticket comunicated by the client
+ * @param string $ticket The ticket comunicated by the client
  *
- * @return string Returns the ticket once verified it's of the correct lenght
+ * @return string Returns The ticket once verified it's of the correct lenght
  *
- * @throws getParameterException if Supplied ticket is different from what we expect
+ * @throws getParameterException If Supplied ticket is different from what we expect
  *
  */
 function getRequestedTicket ($ticket) {
