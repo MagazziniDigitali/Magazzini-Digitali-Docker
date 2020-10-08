@@ -1,0 +1,13 @@
+Generated File. Do not edit.
+
+[HEADER]
+Version:0.18t:$
+Arch:x86_64-gcc3:$
+
+[PLUGINS]
+
+[INVALID]
+/usr/lib/firefox-addons/plugins/nppdf.so:$
+1491488419000:$
+/root/.mozilla/plugins/nppdf.so:$
+1491488419000:$

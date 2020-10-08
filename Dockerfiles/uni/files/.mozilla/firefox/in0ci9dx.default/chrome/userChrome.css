@@ -1,0 +1,30 @@
+/*
+ * Do not remove the @namespace line -- it's required for correct functioning
+ */
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul"); /* set default namespace to XUL */
+.toolbarbutton-1, .toolbarbutton-menubutton-button {
+    display: none;
+}
+#tbx-bottom-toolbox {
+    display: none;
+}
+
+menu {
+    display:none;
+}
+
+menuitem#context-inspect {
+    display:none;
+}
+
+menuitem#context-viewsource{
+    display:none;
+}
+
+textbox#urlbar {
+	display:none;
+}
+
+searchbar#searchbar {
+	display:none;
+}
